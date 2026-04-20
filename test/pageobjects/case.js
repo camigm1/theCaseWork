@@ -81,7 +81,9 @@ get button(){
     get eventSave(){
         return $('[data-testid="event-save-button"]')
     }
-
+    get eventParentEl(){
+        return $('')
+    }
     get eventDelete(){
         return $('[data-testid="case-event-delete-f2e0cd0f-982b-43cb-a123-03b048cefe89"]')
     }
