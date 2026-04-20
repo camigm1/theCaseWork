@@ -1,4 +1,4 @@
-import { browser } from '@wdio/globals'
+// import { browser } from '@wdio/globals'
 
 /**
 * main page object containing all methods, selectors and functionality
@@ -10,16 +10,16 @@ export default class Page {
     * @param path path of the sub page (e.g. /path/to/page.html)
     */
     openLogin () {
-        return browser.url(`https://www.saucedemo.com/`)
+        return browser.url(`https://app.thecasework.com/`)
     }
 
     //I Will add some changes
 
-    openHomepage (path) {
-        return browser.url(`https://www.saucedemo.com/${path}`)
+    openHomepage () {
+        return browser.url(`https://app.thecasework.com/`)
     }
 
-    openCart (path) {
-        return browser.url(`https://www.saucedemo.com/${path}`)
+    openNewCase (path) {
+        return browser.url(`https://app.thecasework.com/${path}`)
     }
 }

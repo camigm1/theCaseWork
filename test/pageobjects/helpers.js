@@ -1,14 +1,14 @@
 import { $ } from '@wdio/globals'
 import Page from './page.js';
 import Menu from './menu.js';
-import Cart from './cart.js';
+import Cart from './case.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
 class Helpers extends Page {
     
-     async asserts(existing,text){//Text Assertions
+     async assertsExistText(existing,text){//Text Assertions
         await expect(existing).toBeExisting()
         await expect(existing).toHaveText(
             expect.stringContaining(text))

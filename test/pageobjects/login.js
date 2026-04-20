@@ -9,15 +9,15 @@ class LoginPage extends Page {
      * define selectors using getter methods
      */
     get gettingUsername () {
-        return $('#user-name');
+        return $('[data-testid="login-username"]');
     }
 
     get gettingPassword () {
-        return $('#password');
+        return $('[data-testid="login-password"]');
     }
 
     get SubmitBtn () {
-        return $('#login-button');
+        return $('[data-testid="login-submit"]');
     }
 
    
@@ -31,9 +31,9 @@ class LoginPage extends Page {
         await this.SubmitBtn.click();
     }
 
-    async logoutFromHomepage(){
+    // async logoutFromHomepage(){
         
-    }
+    // }
 
     /**
      * overwrite specific options to adapt it to page object
