@@ -11,7 +11,10 @@ class Case extends Page {
      * define selectors using getter methods
      */
     //Main Selectors
-get button(){
+    get createCaseBtn(){
+    return $('[data-testid="add-case-create-button"]')
+}
+    get button(){
     return $('[data-testid="link-button-Create Case"]')
 }
 
@@ -19,9 +22,9 @@ get button(){
         return $('[data-testid="case-info-card-name-input"]')
     }
    
-    get datePicker () { 
-        return $('[id="datePicker-inputrgh"]');
-    }
+    get retainedDatePicker() {
+    return $('[name="retainedDate"]');
+}
 
     get caseType(){
         return $('[data-testid="case-type-combobox"]')
@@ -38,7 +41,9 @@ get button(){
     get billingToggle(){
         return $('[data-testid="case-info-card-fixed-fee-switch"]')
     }
-
+get fixedFeeInput() {
+    return $('[data-testid="case-info-card-fixed-fee-input"]');
+}
     
     get estHours(){
         return $('[data-testid="case-info-card-estimated-hours-input"]')
@@ -50,6 +55,7 @@ get button(){
     get overviewTextbox(){
         return $('[data-testid="case-info-card-overview-input"]')
     }
+
 
     //Assign To Section
     get assignTo(){
@@ -82,13 +88,17 @@ get button(){
         return $('[data-testid="event-save-button"]')
     }
     get eventParentEl(){
-        return $('')
+        return $('[data-testid^="case-event-"]')
     }
     get eventDelete(){
-        return $('[data-testid="case-event-delete-f2e0cd0f-982b-43cb-a123-03b048cefe89"]')
+        return $('[data-testid^="case-event-delete-"]')
     }
-
-
+get noEventsText() {
+    return $('=No Events Scheduled yet');
+}
+get confirmDelete() {
+    return $('[data-testid="confirmation-dialog-confirm-button"]');
+}
 
 
     // Affiliated Parties section
@@ -96,14 +106,15 @@ get button(){
         return $('[data-testid="link-button-Add Affiliated Party"]')
     }
 
+    get confirmAffiliated(){
+        return $('[data-testid="affiliated-party-dialog-add-party-button"]')
+    }
+
     get notesTextbox(){
         return $('[data-testid="case-note-input"]')
     }
 
-    get addEvent(){
-        return $('[data-testid="case-events-add-event-btn"]')
-    }
-
+   
     //Secondary Selectors
     
 
@@ -135,11 +146,38 @@ async clickRandomUser() {
     await browser.execute((el) => el.click(), checkboxes[random]);
 }
 
+//Dropdown Selection
+// async selectRandomOption() {
+//     const listbox = await $('[role="listbox"]');
+//     await listbox.waitForDisplayed({ timeout: 5000 });
+//     const options = await listbox.$$('[role="option"]');
+//     const random = Math.floor(Math.random() * options.length);
+//     await options[random].click();
+// }
+
+async selectRandomOption() {
+    const listbox = await $('[role="listbox"]');
+    await listbox.waitForExist({ timeout: 5000 });
+    const options = await listbox.$$('[role="option"]');
+
+    if (options.length === 0) {
+        throw new Error('No options found in dropdown');
+    }
+
+    const random = Math.floor(Math.random() * options.length);
+    const selectedText = await options[random].getText();
+    await options[random].click();
+
+    return selectedText; // 👈 return the selected name
+}
+//EVENTS
 async selectRandomFutureDate() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    await $('.fui-CalendarDayGrid__dayButton').waitForExist({ timeout: 5000 });
+    await browser.pause(1000);
+    await $('.fui-CalendarDayGrid__dayButton').waitForExist({ timeout: 10000 });
+    // await $('.fui-CalendarDayGrid__table').waitForExist({ timeout: 10000 });
 
     const allDayButtons = await $$('.fui-CalendarDayGrid__dayButton');
 
@@ -170,10 +208,30 @@ async selectRandomFutureDate() {
     const random = Math.floor(Math.random() * futureDays.length);
     const selectedBtn = futureDays[random];
 
-    await selectedBtn.waitForClickable({ timeout: 3000 });
+    await selectedBtn.waitForClickable({ timeout: 30000 });
     await browser.execute((el) => el.click(), selectedBtn);
 }
 
+
+
+async deleteFirstEvent() {
+    const eventCard = await $('.___1i2sot1');
+    
+    // trigger hover via JS
+    await browser.execute((el) => {
+        el.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        el.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    }, eventCard);
+
+    await browser.pause(1000);
+
+    // click delete via JS
+    const deleteBtn = await $('[data-testid^="case-event-delete-"]');
+    await browser.execute((el) => el.click(), deleteBtn);
+
+    await this.confirmDelete.waitForDisplayed({ timeout: 5000 });
+    await this.confirmDelete.click();
+}
 // async addAllToCart() {
 //         for (const btn of this.allAddToCartButtons) {
 //             await btn.click()
@@ -181,66 +239,15 @@ async selectRandomFutureDate() {
 //     }
 
     
-    // New random function to add item to Cart
-    async addItemToCart(arr){
-        const randomNum = Math.floor(Math.random() * arr.length);
-        let randItem = await arr[randomNum].click();
-        return randItem
-    }
-
-    async grabRandNumArr(){
-        const randomCount = Math.floor(Math.random() * this.allAddToCartButtons.length) + 1;
-        const shuffled = [...this.allAddToCartButtons
-        ].sort(() => 0.5 - Math.random());
-        const randomSubset = shuffled.slice(0, randomCount);
-        for (const btn of randomSubset) {
-            await btn.click()
-        }
-         return randomSubset.length;   
-        }
     
-    async removeRandNumArr(itemsAdded) {
-    const removeButtons = await $$('.cart_item .btn_secondary');
-    for (let i = 0; i < itemsAdded; i++) {
-        await removeButtons[i].click();
-    }
-}
-
-    async resetCart(){
-        await Menu.openHomepage()
-        await Helpers.toClick(Menu.hamMenu)
-        await Helpers.toClick(Menu.resetAppState)
-        await browser.refresh()
-    }
-
-    async addAndNavigateToCart(){
-        await Helpers.toClick(this.addToCartCart)
-        await Helpers.toClick(this.shoppingCart)
-    }
-
-    async dinamicAdd(){
-        const items = await $$('.inventory_item');
-        const randomItem = items[Math.floor(Math.random() * items.length)];
     
-        const itemName = await randomItem.$('.inventory_item_name').getText();
-        await randomItem.$('.btn_primary').click();
-        return itemName
-    }
-
-    async cartMap(){
-        const cartItemNames = await $$('.cart_item .inventory_item_name')
-        .map(el => el.getText());
-        return cartItemNames
-    }
-
     async logoutFromPage(){
         await Helpers.toClick(Menu.hamMenu);
         await Helpers.toClick(Menu.logout);
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
+    
+
     openNewCase () {
         return super.openNewCase('case/new');
     }

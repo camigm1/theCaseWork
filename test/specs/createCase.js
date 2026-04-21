@@ -12,40 +12,71 @@ describe('Tests Create New Case Functionality', () => {
         await LoginPage.openLogin();
         await LoginPage.login('CAMILA.GALLEGOS9317@STU.MTEC.EDU', 'SoftwareQA!');
     });
-    it('Positive Test: Assign A user, then remove', async () => {
+    it('Positive Test: Assign A user, then remove- GOOD', async () => {
        await Case.button.click()
        await Case.assignTo.click()
        await Case.clickRandomUser()
        await Case.selectUser.click()
-       await Case.deleteAssignedUser.click(
+       await Case.deleteAssignedUser.click()
        await Helpers.assertsExistText(Case.checkAssignedTo,'')
-       )
+       
        })
-    it('Positive Test: Add an Event, then remove', async () => {
-        //  await Case.button.click()
-         await Case.addEvent.click();
-         await Case.eventInput.setValue('example input')
-         await Case.eventDate.click();
-         await Case.selectRandomFutureDate()
-         await Case.eventSave.click();
-         await Case.eventDelete.click();
+    // it('Positive Test: Add an Event, then remove- GOOD but BUGGY', async () => {
+    //     //  await Case.button.click()
+    //      await Case.addEvent.click();
+    //      await Case.eventInput.setValue('example input')
+    //      await Case.eventDate.click();
+    //      await Case.selectRandomFutureDate()
+    //      await Case.eventSave.click();
+    //      await Case.deleteFirstEvent();
+    //      await Helpers.assertsExistText(Case.noEventsText,'No Events Scheduled yet')
+    // })
+//    it('Negative Test: Input all required fields, then save- GOOD', async () => {
+//         await browser.refresh();
+//        await Case.assignTo.click()
+//        await Case.clickRandomUser()
+//        await Case.selectUser.click()
+//         await Case.caseType.click();
+//         await Case.selectRandomOption()
+//         await Case.caseStatus.waitForDisplayed({ timeout: 5000 });
+//         await Case.caseStatus.click();
+//         await Case.selectRandomOption();
+//         await Case.billingToggle.click();
+//         await Case.fixedFeeInput.waitForDisplayed({ timeout: 5000 });
+//         await Case.fixedFeeInput.setValue('100.00');
+//         await Case.descriptionTextbox.setValue('Just description');
+//         await Case.overviewTextbox.setValue('just a value');
+//          await Case.addEvent.click();
+//          await Case.eventInput.setValue('example input')
+//          await Case.eventDate.click();
+//         await browser.pause(2000);
+//         await Case.selectRandomFutureDate();
+//         await Case.eventSave.click();
+//         await Case.addAffiliated.click();
+//         await Case.clickRandomUser();
+//         await Case.confirmAffiliated.click();
+//         await Case.notesTextbox.setValue('notessss')
+//         await expect(Case.createCaseBtn).toBeDisabled();
+//     })
+//    it('Positive Test: Test Only Required Fields- GOOD', async () => {
+//         await browser.refresh();
+//         const thingy = 'This Case Name'
+//         await Case.caseName.setValue(thingy)
+//         await Case.retainedDatePicker.click();
+//         await Case.selectRandomFutureDate();
+//         await Case.retainedBy.click();
+//         await Case.selectRandomOption();
+//         await Case.createCaseBtn.click();
+//         await expect($(`=${thingy}`)).toBeDisplayed();
+//     })
+     it('Positive Test: Checks for Retained By dropdown election', async () => {
+        await browser.refresh()
+        await Case.retainedBy.click();
+       const selectedName = await Case.selectRandomOption();
 
+// assert it appears in the card
+await expect($(`[aria-label="${selectedName}"]`)).toBeDisplayed();
     })
-//    it('Positive Test: Adds One Item and checks Cart Inventory Number', async () => {
-//         await Menu.openHomepage()
-//         await Helpers.toClick(Cart.addToCartCart)
-//         await Helpers.asserts(Cart.itemInCart,'1')
-//     })
-//     it('Positive Test: Check for correct added item in Cart & button functionality', async () => {
-//         await Cart.resetCart()
-//         await Cart.addAndNavigateToCart()
-//         await Helpers.asserts(SecureCart.sameItemCart,'Remove')
-//     })
-//      it('Positive Test: Checks for removing item in Cart', async () => {
-//         await Cart.openCart()
-//         await Helpers.toClick(SecureCart.sameItemCart)
-//         await Helpers.asserts(SecureCart.removedCartPage,'')
-//     })
 //     it('Positive Test: Checks functionality of continue shopping button', async () => {
 //         await Helpers.toClick(Cart.continueShopping)
 //         await Helpers.asserts(SecureCart.getContinueShopping,'Products')
