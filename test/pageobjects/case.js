@@ -1,6 +1,6 @@
 import { $ } from '@wdio/globals'
 import Page from './page.js';
-import Menu from './menu.js';
+import Menu from './task.js';
 import Helpers from './helpers.js'
 
 /**
@@ -30,9 +30,11 @@ class Case extends Page {
         return $('[data-testid="case-type-combobox"]')
     }
 
-    get retainedBy(){
-        return $('[data-testid="party-combobox"]')
-    }
+   get retainedBy() {
+    return $('[id="menur17"]')
+    // return $('button=Select Client');
+    //changed data testid?
+}
     
     get caseStatus(){
         return $('[data-testid="case-status-combobox"]')
@@ -41,9 +43,9 @@ class Case extends Page {
     get billingToggle(){
         return $('[data-testid="case-info-card-fixed-fee-switch"]')
     }
-get fixedFeeInput() {
+    get fixedFeeInput() {
     return $('[data-testid="case-info-card-fixed-fee-input"]');
-}
+    }   
     
     get estHours(){
         return $('[data-testid="case-info-card-estimated-hours-input"]')
@@ -93,12 +95,12 @@ get fixedFeeInput() {
     get eventDelete(){
         return $('[data-testid^="case-event-delete-"]')
     }
-get noEventsText() {
+    get noEventsText() {
     return $('=No Events Scheduled yet');
-}
-get confirmDelete() {
+    }
+    get confirmDelete() {
     return $('[data-testid="confirmation-dialog-confirm-button"]');
-}
+    }
 
 
     // Affiliated Parties section
@@ -136,16 +138,61 @@ get confirmDelete() {
         { name: 'notesTextbox',       selector: '[data-testid="case-note-input"]' },
         { name: 'addEvent',           selector: '[data-testid="case-events-add-event-btn"]' },
     ];
-}
+    }
     
 
 
-async clickRandomUser() {
+    async clickRandomUser() {
     const checkboxes = await $$('.fui-Checkbox__input');
     const random = Math.floor(Math.random() * checkboxes.length);
     await browser.execute((el) => el.click(), checkboxes[random]);
+    }
+
+    async selectAllUsers() {
+    const checkboxes = await $$('.fui-Checkbox__input');
+    
+    for (const checkbox of checkboxes) {
+        await browser.execute((el) => el.click(), checkbox);
+    }
+    
+    await $('[data-testid="select-users-dialog-submit"]').click();
 }
 
+async removeAllUsers() {
+    let deleteButtons = await $$('[data-testid="person-control-delete-button"]');
+    
+    while (deleteButtons.length > 0) {
+        await deleteButtons[0].click();
+        await browser.pause(500);
+        deleteButtons = await $$('[data-testid="person-control-delete-button"]');
+    }
+}
+
+
+    async selectAllAffiliatedParties() {
+    const checkboxes = await $$('.fui-Checkbox__input');
+    
+    for (const checkbox of checkboxes) {
+        await browser.execute((el) => el.click(), checkbox);
+    }
+    
+    await $('[data-testid="affiliated-party-dialog-add-party-button"]').click();
+}
+
+    async removeAllAffiliatedParties() {
+    let dismissButtons = await $$('[data-testid="party-control-dismiss-button"]');
+    
+    while (dismissButtons.length > 0) {
+        await browser.execute((el) => el.click(), dismissButtons[0]);
+        
+        // confirm the delete popup
+        await $('[data-testid="confirmation-dialog-confirm-button"]').waitForDisplayed({ timeout: 5000 });
+        await $('[data-testid="confirmation-dialog-confirm-button"]').click();
+        
+        await browser.pause(500);
+        dismissButtons = await $$('[data-testid="party-control-dismiss-button"]');
+    }
+}
 //Dropdown Selection
 // async selectRandomOption() {
 //     const listbox = await $('[role="listbox"]');
@@ -170,6 +217,30 @@ async selectRandomOption() {
 
     return selectedText; // 👈 return the selected name
 }
+
+async selectRandomMenuOption() {
+    await browser.pause(500);
+    
+    await $('.fui-MenuList').waitForExist({ timeout: 5000 });
+    
+    const items = await $$('.fui-MenuItemRadio');
+    console.log('Menu items found:', items.length);
+
+    if (items.length === 0) {
+        throw new Error('No menu items found');
+    }
+
+    const random = Math.floor(Math.random() * items.length);
+    
+    const selectedText = await browser.execute((el) => el.innerText.trim(), items[random]);
+    console.log('Selected text:', selectedText);
+
+    await browser.execute((el) => el.click(), items[random]);
+
+    return selectedText;
+}
+
+
 //EVENTS
 async selectRandomFutureDate() {
     const today = new Date();
@@ -232,14 +303,8 @@ async deleteFirstEvent() {
     await this.confirmDelete.waitForDisplayed({ timeout: 5000 });
     await this.confirmDelete.click();
 }
-// async addAllToCart() {
-//         for (const btn of this.allAddToCartButtons) {
-//             await btn.click()
-//         }
-//     }
 
-    
-    
+
     
     async logoutFromPage(){
         await Helpers.toClick(Menu.hamMenu);
