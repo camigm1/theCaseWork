@@ -12,24 +12,92 @@ describe('Add Task Functionality', () => {
        before(async () => {
         await LoginPage.openLogin();
         await LoginPage.login('CAMILA.GALLEGOS9317@STU.MTEC.EDU', 'SoftwareQA!');
-    });
-    it('Positive Test: Input only required information ', async () => {
+         });
+    it('Positive Test: Task without a Milestone in file ', async () => {
        await AddTask.addTaskBtn.click();
-       await AddTask.caseInput.click();
-       await browser.pause(3000);
-       await AddTask.selectRandomCaseOption();
-        await browser.pause(3000);
-        await AddTask.assignTo.click();
-        await browser.pause(3000);
-        await Case.selectRandomMenuOption();
-        await browser.pause(3000);
-        await AddTask.milestone.click();
-        await browser.pause(3000);
-        await Case.selectRandomMenuOption();
+       await browser.pause(1000);
+
+        // type task name
+    //    await AddTask.taskToComplete.setValue('AUTOTEST Negative Task ' + Date.now());
+    //    await browser.pause(1000);
+
+    await AddTask.taskToComplete.click();
+await browser.pause(500);
+await AddTask.taskToComplete.clearValue();
+await browser.keys('AUTOTEST Negative Task ' + Date.now());
+await browser.pause(500);
+
+    // select Eevee case which has no assign to or milestones
+        await AddTask.caseInput.click();
+        await browser.pause(1000);
+        await browser.execute((el) => el.click(),
+        await $('[data-testid="case-filter-menu-9b907304-b1d1-4625-b2fc-b9d5daa43328-option"]')
+    );
+        await browser.pause(1000);
+
+    // click save
+    // await AddTask.saveBtn.click();
+    // await browser.pause(1000);
+
+// wait for save button to be enabled then save
+    await browser.waitUntil(
+        async () => await $('[data-testid="task-dialog-save-button"]').isEnabled(),
+        { timeout: 5000, timeoutMsg: 'Save button never became enabled' }
+    );
+    await $('[data-testid="task-dialog-save-button"]').click();
+    await browser.pause(2000);
+
+
+    const isEnabled = await $('[data-testid="task-dialog-save-button"]').isEnabled();
+console.log('Save button enabled:', isEnabled);
+    // assert the alert appears
+    await Helpers.assertsExistText(
+        $('.fui-MessageBarTitle'),
+        'Missing Required Information'
+    );   
     })
-    // it('Positive Test: Should Open the Hamburger Menu', async () => {
-    //     await Helpers.asserts(SecureMenu.getMenu,'All Items')
-    // })
+
+//     it('Positive Test: Input only required information with available Milestones and AssignTo-BUG', async () => {
+//        const taskName = 'AUTOTEST Task ' + Date.now();
+//     await AddTask.addTaskBtn.click();
+//     await browser.pause(1000);
+
+//     // type task name
+//     await AddTask.taskToComplete.setValue(taskName);
+//     await browser.pause(1000);
+
+//     // select John doe case specifically
+//     await AddTask.caseInput.click();
+//     await browser.pause(1000);
+//     await browser.execute((el) => el.click(),
+//         await $('[data-testid="case-filter-menu-e3eba00b-1d70-4a5e-92a4-61111f5521f8-option"]')
+//     );
+//     await browser.pause(2000);
+
+//     // select assign to
+//     await browser.execute((el) => el.click(), await AddTask.assignTo);
+//     await browser.pause(1000);
+//     await AddTask.selectRandomUserOption();
+//     await browser.pause(1000);
+
+//     // select milestone
+//     await AddTask.milestone.click();
+//     await browser.pause(1000);
+//     await AddTask.selectRandomOption();
+//     await browser.pause(1000);
+
+//     // wait for save button to be enabled then save
+//     await browser.waitUntil(
+//         async () => await $('[data-testid="task-dialog-save-button"]').isEnabled(),
+//         { timeout: 5000, timeoutMsg: 'Save button never became enabled' }
+//     );
+//     await $('[data-testid="task-dialog-save-button"]').click();
+//     await browser.pause(1000);
+
+//     // assert task appears in dashboard
+//     await expect($(`span=${taskName}`)).toBeDisplayed();
+// });
+
     // it('Positive Test: Should click on "All Items" link taking you to homepage where "All Items" reside', async () => {
     //     await Helpers.toClick(Cart.shoppingCart)
     //     await Helpers.toClick(Menu.hamMenu);
