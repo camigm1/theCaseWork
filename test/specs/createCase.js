@@ -30,7 +30,7 @@
 //     //      await Case.deleteFirstEvent();
 //     //      await Helpers.assertsExistText(Case.noEventsText,'No Events Scheduled yet')
 //     // })
-// //    it('Negative Test: Input all required fields, then save- GOOD', async () => {
+// //    it('Negative Test: Input unrequired fields, then save- GOOD', async () => {
 // //         await browser.refresh();
 // //        await Case.assignTo.click()
 // //        await Case.clickRandomUser()

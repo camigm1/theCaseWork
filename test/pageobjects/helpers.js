@@ -14,9 +14,6 @@ class Helpers extends Page {
             expect.stringContaining(text))
     }
 
-    async assertItemInCart(itemName, cartItemNames) {
-        await expect(cartItemNames).toContain(itemName);
-}
 
     async toClick(selector) {// Adds click function to selectors
             await selector.waitForClickable({ timeout: 5000 });

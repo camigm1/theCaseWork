@@ -243,6 +243,7 @@ async selectRandomMenuOption() {
 
 //EVENTS
 async selectRandomFutureDate() {
+    await browser.pause(5000);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
