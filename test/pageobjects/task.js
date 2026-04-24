@@ -51,40 +51,8 @@ class AddTask extends Page {
      * overwrite specific options to adapt it to page object
      */
 
-//     async selectRandomCaseOption() {
-//     await browser.pause(500);
-//     await $('.fui-MenuList').waitForExist({ timeout: 5000 });
-    
-//     const items = await $$('[data-testid^="case-filter-menu-"]');
-//     console.log('Case items found:', items.length);
 
-//     if (items.length === 0) {
-//         throw new Error('No case options found');
-//     }
 
-//     const random = Math.floor(Math.random() * items.length);
-//     const selectedText = await browser.execute((el) => el.innerText.trim(), items[random]);
-//     console.log('Selected case:', selectedText);
-    
-//     await browser.execute((el) => el.click(), items[random]);
-
-//     return selectedText;
-// }
-
-// async selectRandomOption() {
-//     const listbox = await $('[role="listbox"]');
-//     await listbox.waitForExist({ timeout: 5000 });
-//     const options = await listbox.$$('[role="option"]');
-
-//     if (options.length === 0) {
-//         throw new Error('No options found in dropdown');
-//     }
-
-//     const random = Math.floor(Math.random() * options.length);
-//     const selectedText = await options[random].getText();
-//     await options[random].click();
-
-//     return selectedText;
 // }
 async selectRandomUserOption() {
     await browser.pause(500);
@@ -161,7 +129,7 @@ async selectRandomDropdownOption() {
 
 
     openHomepage () {
-        return super.openHomepage('inventory.html');
+    return super.openHomepage('inventory.html');
     }
     
 }
