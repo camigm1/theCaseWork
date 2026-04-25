@@ -1,0 +1,56 @@
+import { $ } from "@wdio/globals";
+import AddTask from "../pageobjects/task.js";
+import Case from "../pageobjects/case.js";
+import Page from "./page.js";
+import Menu from "./task.js";
+import Helpers from "./helpers.js";
+
+class TaskProcedures extends Page {
+  async caseName() {}
+  //Creating an Event
+  async assignToTask() {
+    await browser.execute((el) => el.click(), await AddTask.assignTo);
+    await browser.pause(1000);
+    await AddTask.selectRandomUserOption();
+    await browser.pause(1000);
+  }
+
+  async milestonesTask() {
+    await AddTask.milestone.click();
+    await browser.pause(1000);
+    await AddTask.selectRandomOption();
+    await browser.pause(1000);
+  }
+
+  //John Doe from dropdown Case
+  async specificCase() {
+    await AddTask.caseInput.click();
+    await browser.pause(1000);
+    await browser.execute(
+      (el) => el.click(),
+      await $(
+        '[data-testid="case-filter-menu-4ee4d161-1c99-4a1e-8730-59e8d951de1f-option"]',
+      ),
+    );
+  }
+
+  async dueByDate() {
+    await AddTask.dueBy.click();
+    await AddTask.datePicker.click();
+    await browser.pause(9000);
+    await Case.selectRandomFutureDate();
+  }
+
+  //   async affiliatedUser() {
+  //     await Case.addAffiliated.click();
+  //     await Case.clickRandomUser();
+  //     await Case.confirmAffiliated.click();
+  //   }
+  //   async bill() {
+  //     await Case.billingToggle.click();
+  //     await Case.fixedFeeInput.waitForDisplayed({ timeout: 5000 });
+  //     await Case.fixedFeeInput.setValue("100.00");
+  //   }
+}
+
+export default new TaskProcedures();
