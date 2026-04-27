@@ -1,6 +1,6 @@
 import { $ } from "@wdio/globals";
-import AddTask from "../pageobjects/task.js";
-import Case from "../pageobjects/case.js";
+import AddTask from "./task.js";
+import Case from "./case.js";
 import Page from "./page.js";
 import Menu from "./task.js";
 import Helpers from "./helpers.js";
@@ -41,11 +41,22 @@ class TaskProcedures extends Page {
     await Case.selectRandomFutureDate();
   }
 
+ async firsttaskTextbox() {
+    await AddTask.taskToComplete.click();
+    await browser.pause(500);
+    await AddTask.taskToComplete.setValue('Hellooooo');
+    await AddTask.taskToComplete.setValue('Testing');
+    // await browser.keys("AUTOTEST Negative Task " + Date.now());
+    await AddTask.taskToComplete.click();
+  }
+
+
   async taskTextbox() {
     await AddTask.taskToComplete.click();
     await browser.pause(500);
     await AddTask.taskToComplete.clearValue();
     await browser.keys("AUTOTEST Negative Task " + Date.now());
+    await AddTask.taskToComplete.click();
   }
 }
 

@@ -1,8 +1,13 @@
 import { $ } from "@wdio/globals";
 import Page from "./page.js";
 
-class AddTask extends Page {
-  get saveTemaplate() {
+class Template extends Page {
+  get templateDashboardBtn(){
+    return $('[data-testid="vert-nav-templates"]')
+  }
+
+
+  get saveTemplate() {
     return $('[data-testid="edit-case-template-save-button"]');
   }
 
@@ -55,6 +60,18 @@ class AddTask extends Page {
     return $('[data-testid="milestone-template-submit-button"]');
   }
 
+  get milestoneDots(){
+    return $('[aria-label="More items"]')
+  }
+
+  get milestoneRemove(){
+    return $('[data-testid="custom-data-table-context-menu-item-Remove"]')
+  }
+
+  get milestoneConfirmDelete(){
+    return $('[data-testid="confirmation-dialog-confirm-button"]')
+  }
+
   get addEvent() {
     return $('[data-testid="link-button-Add Event"]');
   }
@@ -68,6 +85,14 @@ class AddTask extends Page {
     //change id format?
     return $('[data-testid="event-template-dialog-save"]');
   }
+
+  get eventRemoveDots(){
+    return $('[aria-label="More items"]')
+  }
+
+  get eventRemove(){
+    return $('[data-testid="custom-data-table-context-menu-item-Remove"]')
+  }
 }
 
-export default new AddTask();
+export default new Template();

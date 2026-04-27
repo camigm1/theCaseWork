@@ -25,14 +25,16 @@ class Case extends Page {
   }
 
   get retainedBy() {
-    return $('[id="menur17"]');
+    // return $('[id="menur17"]');
     // return $('button=Select Client');
     //changed data testid?
+    return $('#menurq3');
   }
 
   get caseStatus() {
     // return $('[data-testid="case-status-combobox"]');
-    return $("#menur1jq");
+    // return $("#menur1jq");
+    return $('button[id="menurpo"]')
   }
 
   get billingToggle() {
@@ -118,6 +120,10 @@ class Case extends Page {
   get deleteAffiliatedCard() {
     return $('[data-testid="party-control-dismiss-button"]');
   }
+
+  // get confirmCardDeletion(){
+  //   return $('[data-testid="confirmation-dialog-confirm-button"]')
+  // }
 
   //Notes
   get notesTextbox() {
@@ -206,16 +212,15 @@ class Case extends Page {
   }
 
   async removeAllAffiliatedParties() {
-    let dismissButtons = await $$(this.deleteAffiliatedCard);
+    let dismissButtons = await $$('[data-testid="party-control-dismiss-button"]');
 
     while (dismissButtons.length > 0) {
-      await browser.execute((el) => el.click(), dismissButtons[0]);
-      // confirm the delete popup
-      await this.confirmDelete.click();
-      await browser.pause(500);
-      dismissButtons = await $$(this.deleteAffiliatedCard);
+        await browser.execute((el) => el.click(), dismissButtons[0]);
+        await this.confirmDelete.click();
+        await browser.pause(500);
+        dismissButtons = await $$('[data-testid="party-control-dismiss-button"]');
     }
-  }
+}
 
   async selectRandomOption() {
     const listbox = await $('[role="listbox"]');
