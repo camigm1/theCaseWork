@@ -27,7 +27,7 @@ describe("Tests Create New Case Functionality", () => {
     await browser.refresh();
     await CaseProcedures.assignUser();
     await CaseProcedures.caseType();
-    // await CaseProcedures.caseStatus();
+    await CaseProcedures.caseStatus();
     await Case.descriptionTextbox.setValue("Just description");
     await Case.overviewTextbox.setValue("just a value");
     await Case.notesTextbox.setValue("notessss");
@@ -50,7 +50,7 @@ describe("Tests Create New Case Functionality", () => {
     await browser.refresh();
     await Case.retainedBy.click();
     const selectedName = await Case.selectRandomMenuOption();
-    //
+    //assert that the selected name is being displayed in the correct place
     // await expect($(`[aria-label="${selectedName}"]`)).toBeDisplayed();
   });
   //   it("Positive Test: Check for Adding all Affiliated users and removing", async () => {

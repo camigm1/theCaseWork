@@ -7,7 +7,7 @@ import Helpers from "./helpers.js";
 
 class TaskProcedures extends Page {
   async caseName() {}
-  //Creating an Event
+
   async assignToTask() {
     await browser.execute((el) => el.click(), await AddTask.assignTo);
     await browser.pause(1000);
@@ -41,16 +41,12 @@ class TaskProcedures extends Page {
     await Case.selectRandomFutureDate();
   }
 
-  //   async affiliatedUser() {
-  //     await Case.addAffiliated.click();
-  //     await Case.clickRandomUser();
-  //     await Case.confirmAffiliated.click();
-  //   }
-  //   async bill() {
-  //     await Case.billingToggle.click();
-  //     await Case.fixedFeeInput.waitForDisplayed({ timeout: 5000 });
-  //     await Case.fixedFeeInput.setValue("100.00");
-  //   }
+  async taskTextbox() {
+    await AddTask.taskToComplete.click();
+    await browser.pause(500);
+    await AddTask.taskToComplete.clearValue();
+    await browser.keys("AUTOTEST Negative Task " + Date.now());
+  }
 }
 
 export default new TaskProcedures();
