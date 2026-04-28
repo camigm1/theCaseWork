@@ -14,7 +14,7 @@ class AddTask extends Page {
   }
 
   get milestone() {
-    return $('[data-testid="milestone-combobox"]');
+    return $('[data-testid="milestone-dropdown-menu"]');
   }
 
   get assignTo() {
@@ -44,11 +44,9 @@ class AddTask extends Page {
   get cancelBtn() {
     return $('[data-testid="task-dialog-cancel-button"]');
   }
-  /**
-   * overwrite specific options to adapt it to page object
-   */
+  
 
-  // }
+  
   async selectRandomUserOption() {
     await browser.pause(500);
 
@@ -84,24 +82,24 @@ class AddTask extends Page {
   async selectRandomOption() {
     await browser.pause(500);
 
-    const listbox = await $('[role="listbox"]');
-    await listbox.waitForExist({ timeout: 5000 });
+    const menu = await $('[role="menu"]');
+    await menu.waitForExist({ timeout: 5000 });
 
-    const options = await listbox.$$('[role="option"]');
+    const options = await menu.$$('[role="menuitemradio"]');
     console.log("Options found:", options.length);
 
     if (options.length === 0) {
-      console.log("No options available, skipping");
-      await browser.keys("Escape");
-      return null;
+        console.log("No options available, skipping");
+        await browser.keys("Escape");
+        return null;
     }
 
     const random = Math.floor(Math.random() * options.length);
     const selectedText = await options[random].getText();
-    await options[random].click();
+    await browser.execute((el) => el.click(), options[random]);
 
     return selectedText;
-  }
+}
 
   async selectRandomDropdownOption() {
     await browser.pause(500);

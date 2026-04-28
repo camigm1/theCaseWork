@@ -15,14 +15,14 @@
 //     await Case.deleteAssignedUser.click();
 //     await Helpers.assertsExistText(Case.checkAssignedTo, "");
 //   });
-//   //   it("Positive Test: Add an Event, then remove- GOOD", async () => {
-//   //     await CaseProcedures.createEvent();
-//   //     await Case.deleteFirstEvent();
-//   //     await Helpers.assertsExistText(
-//   //       Case.noEventsText,
-//   //       "No Events Scheduled yet",
-//   //     );
-//   //   });
+//     it("Positive Test: Add an Event, then remove- GOOD", async () => {
+//       await CaseProcedures.createEvent();
+//       await Case.deleteFirstEvent();
+//       await Helpers.assertsExistText(
+//         Case.noEventsText,
+//         "No Events Scheduled yet",
+//       );
+//     });
 //   it("Negative Test: Input unrequired fields, then save- GOOD", async () => {
 //     await browser.refresh();
 //     await CaseProcedures.assignUser();

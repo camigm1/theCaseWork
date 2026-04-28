@@ -18,7 +18,7 @@ class TaskProcedures extends Page {
   async milestonesTask() {
     await AddTask.milestone.click();
     await browser.pause(1000);
-    await AddTask.selectRandomOption();
+    await AddTask.selectRandomDropdownOption();
     await browser.pause(1000);
   }
 
@@ -38,7 +38,7 @@ class TaskProcedures extends Page {
     await AddTask.dueBy.click();
     await AddTask.datePicker.click();
     await browser.pause(9000);
-    await Case.selectRandomFutureDate();
+    await Case.selectDateTest();
   }
 
  async firsttaskTextbox() {

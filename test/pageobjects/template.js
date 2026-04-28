@@ -7,6 +7,14 @@ class Template extends Page {
   }
 
 
+  get editDots(){
+    return $('[aria-label="More items"]')
+  }
+
+  get edit(){
+    return $('[data-testid="custom-data-table-context-menu-item-Edit"]')
+  }
+
   get saveTemplate() {
     return $('[data-testid="edit-case-template-save-button"]');
   }
@@ -78,7 +86,7 @@ class Template extends Page {
 
   get eventName() {
     //change id format?
-    return $('[id="field-r349__control"]');
+    return $('[name="eventName"]');
   }
 
   get eventSave() {

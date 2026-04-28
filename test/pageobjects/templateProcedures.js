@@ -1,18 +1,29 @@
 import { $ } from "@wdio/globals";
 import Template from "../pageobjects/template.js";
 import Helpers from "./helpers.js";
+import Page from "../pageobjects/page.js"
 
 class TemplateProcedures extends Page {
 
-  async createMilestone() {
+
+get mileName(){
+  return 'Milestone Name'
+}
+
+async navigateAndOpen(){
+  await Template.editDots.click();
+  await Template.edit.click();
+}
+
+  async createMilestone(name) {
     await Template.milestones.click();
-    await Template.milestoneName.setValue('Milestone name')
+    await Template.milestoneName.setValue(name)
     await Template.milestoneSubmit.click();
   }
 
-async addEvent() {
+async addEvent(name) {
    await Template.addEvent.click();
-   await Template.eventName.setValue('this event name')
+   await Template.eventName.setValue(name)
    await Template.eventSave.click();
   }
 
