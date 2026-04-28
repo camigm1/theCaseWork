@@ -127,10 +127,6 @@ class AddTask extends Page {
 
     return selectedText;
   }
-
-  openHomepage() {
-    return super.openHomepage("inventory.html");
-  }
 }
 
 export default new AddTask();

@@ -21,7 +21,6 @@ class CaseProcedures extends Page {
   }
 
   async caseStatus() {
-    await Case.caseStatus.waitForDisplayed({ timeout: 5000 });
     await Case.caseStatus.click();
     await Case.selectRandomOption();
   }
