@@ -34,6 +34,15 @@ class TaskProcedures extends Page {
     );
   }
 
+  async eeveeCase() {
+    await AddTask.caseInput.click();
+    await browser.pause(1000);
+    await browser.execute(
+      (el) => el.click(),
+      await AddTask.eeveeCase
+    );
+  }
+
   async dueByDate() {
     await AddTask.dueBy.click();
     await AddTask.datePicker.click();

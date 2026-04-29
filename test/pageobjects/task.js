@@ -21,6 +21,10 @@ class AddTask extends Page {
     return $('[data-testid="user-filter-menu"]');
   }
 
+
+  get eeveeCase(){
+    return $('[data-testid="case-filter-menu-9b907304-b1d1-4625-b2fc-b9d5daa43328-option"]')
+  }
   get taskToComplete() {
     return $('[data-testid="task-dialog-textarea"]');
   }

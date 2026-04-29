@@ -101,6 +101,31 @@ class Template extends Page {
   get eventRemove(){
     return $('[data-testid="custom-data-table-context-menu-item-Remove"]')
   }
+
+  async selectRandomEngagement() {
+    await browser.execute((el) => el.click(), 
+    await $('[data-testid="edit-case-template-engagement-template-dropdown"]')
+    );
+    await browser.pause(500);
+
+    const menu = await $('[role="menu"]');
+    await menu.waitForExist({ timeout: 5000 });
+
+    const options = await menu.$$('[role="menuitemradio"]');
+
+    if (options.length === 0) {
+        await browser.keys('Escape');
+        return null;
+    }
+
+    const random = Math.floor(Math.random() * options.length);
+    const selectedText = await options[random].getText();
+    await browser.execute((el) => el.click(), options[random]);
+
+    return selectedText;
 }
+}
+
+
 
 export default new Template();

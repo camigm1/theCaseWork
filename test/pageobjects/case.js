@@ -17,7 +17,7 @@ class Case extends Page {
   }
 
   get retainedDatePicker() {
-    return $('[name="retainedDate"]');
+    return $('[data-testid="case-retained-date-picker"]');
   }
 
   get caseType() {
@@ -25,17 +25,11 @@ class Case extends Page {
   }
 
   get retainedBy() {
-    // return $('[id="menur17"]');
-    // return $('button=Select Client');
-    //changed data testid?
-    // return $('#menurq3');
-    return $("button=Select Client");
+    return $('[data-testid="client-party-dropdown"]');
   }
 
   get caseStatus() {
-    // return $('[data-testid="case-status-combobox"]');
-    // return $("#menur1jq");
-    return $('button[id="menurpo"]');
+    return $('[data-testid="case-status-dropdown"]');
   }
 
   get billingToggle() {
@@ -241,6 +235,44 @@ class Case extends Page {
     return selectedText; // 👈 return the selected name
   }
 
+  async selectRandomCaseStatus() {
+    await browser.pause(500);
+
+    const menu = await $('[role="menu"]');
+    await menu.waitForExist({ timeout: 5000 });
+
+    const options = await menu.$$('[role="menuitemradio"]');
+
+    if (options.length === 0) {
+        await browser.keys('Escape');
+        return null;
+    }
+
+    const random = Math.floor(Math.random() * options.length);
+    const selectedText = await options[random].getText();
+    await browser.execute((el) => el.click(), options[random]);
+
+    return selectedText;
+}
+async selectRandomClient() {
+    await browser.pause(500);
+
+    const menu = await $('[role="menu"]');
+    await menu.waitForExist({ timeout: 5000 });
+
+    const options = await menu.$$('[role="menuitemradio"]');
+
+    if (options.length === 0) {
+        await browser.keys('Escape');
+        return null;
+    }
+
+    const random = Math.floor(Math.random() * options.length);
+    const selectedText = await options[random].getText();
+    await browser.execute((el) => el.click(), options[random]);
+
+    return selectedText;
+}
   //   async selectRandomOption() {
   //     await $(
   //       '[data-testid="undefined-03d38225-16c2-43a5-8659-37c9aab02dce-option"]',

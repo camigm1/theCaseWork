@@ -22,7 +22,7 @@ class CaseProcedures extends Page {
 
   async caseStatus() {
     await Case.caseStatus.click();
-    await Case.selectRandomOption();
+    await Case.selectRandomCaseStatus();
   }
 
   async assignUser() {

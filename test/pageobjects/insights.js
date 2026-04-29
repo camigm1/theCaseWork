@@ -5,6 +5,11 @@ import Helpers from "./helpers.js";
 
 class Insights extends Page {
   //Main Selectors
+
+get insights(){
+  return $('[data-testid="vert-nav-insights"]')
+}
+
   get timePeriod() {
     return $('[data-testid="case-insights-time-period-filter-menu"]');
   }

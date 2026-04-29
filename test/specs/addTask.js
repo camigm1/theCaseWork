@@ -13,72 +13,68 @@
 //   });
 //   it("Positive Test: Task without choosing a Milestone- button not turning blue ", async () => {
 //     await AddTask.addTaskBtn.click();
-//     // await TaskProcedures.taskTextbox();
-//     // await TaskProcedures.specificCase();
-//     // await TaskProcedures.firsttaskTextbox();
-//     // await browser.pause(2000);
-//     // await AddTask.saveBtn.click();
-//     // await Helpers.assertsExistText(
-//     //   $(".fui-MessageBarTitle"),
-//     //   "Missing Required Information",
-//     // );
+//     await TaskProcedures.taskTextbox();
+//     await TaskProcedures.specificCase();
+//     await TaskProcedures.firsttaskTextbox();
+//     await browser.pause(2000);
+//     await AddTask.saveBtn.click();
+//    await expect(AddTask.saveBtn).toBeDisabled();
 //   });
 // //   it("Positive Test: Task with all required Info except Assign To- BUG ", async () => {
 // //     await AddTask.addTaskBtn.click();
-// //     await TaskProcedures.taskTextbox();
-// //     await TaskProcedures.specificCase();
 // //     await TaskProcedures.firsttaskTextbox();
+// //     // await TaskProcedures.taskTextbox();
+// //     await TaskProcedures.eeveeCase();
+// //     // await TaskProcedures.milestonesTask();
 // //     await browser.pause(2000);
 // //     await AddTask.saveBtn.click();
 // //     // assert the alert appears
-// //     await Helpers.assertsExistText(
-// //       $(".fui-MessageBarTitle"),
-// //       "Missing Required Information",
-// //     );
+// //     await expect(AddTask.saveBtn).toBeDisabled();
 // //   });
-//   it("Positive Test: Input only required information with available Milestones and AssignTo-BUG", async () => {
-//     const taskName = "AUTOTEST Task " + Date.now();
-//     // await AddTask.addTaskBtn.click();
-//     await browser.pause(1000);
-//     await AddTask.taskToComplete.setValue(taskName);
-//     await browser.pause(1000);
-//     await TaskProcedures.specificCase();
-//     await browser.pause(2000);
-//     await TaskProcedures.assignToTask();
-//     await TaskProcedures.milestonesTask();
-//     await AddTask.saveBtn.click();
-//     await browser.pause(1000);
-//     await expect($(`span=${taskName}`)).toBeDisplayed();
-//   });
-//   it("Positive Test: Should click on Due By Functionality and Save", async () => {
-//     const taskName = "AUTOTEST Task " + Date.now();
-//     await AddTask.addTaskBtn.click();
-//     await browser.pause(1000);
-//     await AddTask.taskToComplete.setValue(taskName);
-//     await browser.pause(1000);
-//     await TaskProcedures.specificCase();
-//     await browser.pause(2000);
-//     await TaskProcedures.assignToTask();
-//     await TaskProcedures.milestonesTask();
-//     await TaskProcedures.dueByDate();
-//     // wait for save button to be enabled then save
-//     // await browser.waitUntil(async () => await task.saveBtn.isEnabled(), {
-//     //   timeout: 50000,
-//     //   timeoutMsg: "Save button never became enabled",
-//     // });
-//     await AddTask.saveBtn.click();
-//     await browser.pause(1000);
-//     // assert task appears in dashboard
-//     await expect($(".fui-Badge*=Due by")).toBeDisplayed();
-//     await expect($(`span=${taskName}`)).toBeDisplayed();
-//   });
-//   // it("Positive Test: Case Dropdown functionality", async () => {
-//   //   await browser.refresh();
-//   //   await AddTask.addTaskBtn.click();
-//   //   await AddTask.caseInput.click();
-//   //   const dropdownWord = await AddTask.selectRandomDropdownOption();
-//   //   await expect(AddTask.caseInput).toHaveText(dropdownWord);
-//   // });
+// //   it("Positive Test: Input only required information with available Milestones and AssignTo", async () => {
+// //     const taskName = "AUTOTEST Task " + Date.now();
+// //     // await AddTask.addTaskBtn.click();
+// //     await browser.pause(1000);
+// //     await AddTask.taskToComplete.setValue(taskName);
+// //     await browser.pause(1000);
+// //     await TaskProcedures.specificCase();
+// //     await browser.pause(2000);
+// //     await TaskProcedures.assignToTask();
+// //     await TaskProcedures.milestonesTask();
+// //     await AddTask.saveBtn.click();
+// //     await browser.pause(1000);
+// //     await expect($(`span=${taskName}`)).toBeDisplayed();
+// //   });
+// //   it("Positive Test: Should click on Due By Functionality and Save", async () => {
+// //     await browser.refresh();
+// //     const taskName = "AUTOTEST Task " + Date.now();
+// //     await AddTask.addTaskBtn.click();
+    
+// //     await AddTask.taskToComplete.setValue(taskName);
+    
+// //     await TaskProcedures.specificCase();
+    
+// //     await TaskProcedures.assignToTask();
+// //     // await TaskProcedures.milestonesTask();
+// //     await TaskProcedures.dueByDate();
+// //     // wait for save button to be enabled then save
+// //     // await browser.waitUntil(async () => await task.saveBtn.isEnabled(), {
+// //     //   timeout: 50000,
+// //     //   timeoutMsg: "Save button never became enabled",
+// //     // });
+// //     // await AddTask.saveBtn.click();
+// //     // await browser.pause(1000);
+// //     // // assert task appears in dashboard
+// //     // await expect($(".fui-Badge*=Due by")).toBeDisplayed();
+// //     // await expect($(`span=${taskName}`)).toBeDisplayed();
+// //   });
+// //   it("Positive Test: Case Dropdown functionality", async () => {
+// //     await browser.refresh();
+// //     await AddTask.addTaskBtn.click();
+// //     await AddTask.caseInput.click();
+// //     const dropdownWord = await AddTask.selectRandomDropdownOption();
+// //     await expect(AddTask.caseInput).toHaveText(dropdownWord);
+// //   });
 //   // it("Positive Test: Test the Assign to dropdown functionality", async () => {
 //   //   const word = await addTaskProcedures.assignToTask();
 //   //   //make sure that what's in the input is the same as word?
