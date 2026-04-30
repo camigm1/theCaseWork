@@ -50,6 +50,17 @@ class AddTask extends Page {
   }
   
 
+async selectRandomCase() {
+  const items = await $$('[role="menuitemradio"]');
+  const randomIndex = Math.floor(Math.random() * items.length);
+  const selectedItem = items[randomIndex];
+  const name = await selectedItem.$('.fui-Persona__primaryText').getText();
+  console.log(`Clicking: ${name}`);
+  await selectedItem.click();
+  return name;
+}
+
+
   
   async selectRandomUserOption() {
     await browser.pause(500);
@@ -105,6 +116,8 @@ class AddTask extends Page {
     return selectedText;
 }
 
+
+
   async selectRandomDropdownOption() {
     await browser.pause(500);
     await $(".fui-MenuList").waitForExist({ timeout: 5000 });
@@ -129,6 +142,29 @@ class AddTask extends Page {
 
     return selectedText;
   }
+
+  async selectRandomMilestoneOption() {
+   await browser.pause(500);
+    await $(".fui-MenuList").waitForExist({ timeout: 5000 });
+
+    const items = await $$('[data-testid^="milestone-dropdown-menu-"]');
+    console.log("Milestone items found:", items.length);
+
+    if (items.length === 0) {
+        await browser.keys("Escape");
+        return null;
+    }
+
+    const random = Math.floor(Math.random() * items.length);
+    const selectedText = await items[random].getText();
+    console.log("Selected milestone:", selectedText);
+
+    await items[random].click();
+
+    return selectedText;
+}
+
+
 }
 
 export default new AddTask();

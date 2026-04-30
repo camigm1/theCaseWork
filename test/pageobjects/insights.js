@@ -10,8 +10,13 @@ get insights(){
   return $('[data-testid="vert-nav-insights"]')
 }
 
+get filtersCheckbox(){
+  // return $('#checkbox-r3ui"')
+  return $('//input[@id=//label[text()="Filter By Case Type"]/@for]')
+}
+
   get timePeriod() {
-    return $('[data-testid="case-insights-time-period-filter-menu"]');
+    return $('[data-testid="time-period-filter-menu"]');
   }
   get today() {
     return $(
@@ -52,6 +57,16 @@ get insights(){
   get casesBtn() {
     return $('[data-testid="vert-nav-cases"]');
   }
+
+
+  async selectRandomMenuItem() {
+  const items = await $$('[role="menuitemradio"]');
+  const randomIndex = Math.floor(Math.random() * items.length);
+  const selectedItem = items[randomIndex];
+  const itemText = await selectedItem.$('.fui-MenuItem__content').getText();
+  await selectedItem.click();
+  return { selectedItem, itemText };
+}
 }
 
 export default new Insights();

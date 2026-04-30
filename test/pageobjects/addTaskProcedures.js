@@ -18,8 +18,9 @@ class TaskProcedures extends Page {
   async milestonesTask() {
     await AddTask.milestone.click();
     await browser.pause(1000);
-    await AddTask.selectRandomDropdownOption();
+    await AddTask.selectRandomOption();
     await browser.pause(1000);
+   
   }
 
   //John Doe from dropdown Case
@@ -39,7 +40,7 @@ class TaskProcedures extends Page {
     await browser.pause(1000);
     await browser.execute(
       (el) => el.click(),
-      await AddTask.eeveeCase
+      await $('[data-testid="case-filter-menu-9b907304-b1d1-4625-b2fc-b9d5daa43328-option"]')
     );
   }
 
