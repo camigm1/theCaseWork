@@ -143,25 +143,16 @@ async selectRandomCase() {
     return selectedText;
   }
 
-  async selectRandomMilestoneOption() {
-   await browser.pause(500);
-    await $(".fui-MenuList").waitForExist({ timeout: 5000 });
 
-    const items = await $$('[data-testid^="milestone-dropdown-menu-"]');
-    console.log("Milestone items found:", items.length);
 
-    if (items.length === 0) {
-        await browser.keys("Escape");
-        return null;
-    }
-
-    const random = Math.floor(Math.random() * items.length);
-    const selectedText = await items[random].getText();
-    console.log("Selected milestone:", selectedText);
-
-    await items[random].click();
-
-    return selectedText;
+async selectRandomMilestone() {
+  await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForDisplayed({ timeout: 30000 });
+  const items = await $$('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]');
+  const randomIndex = Math.floor(Math.random() * items.length);
+  const selectedItem = items[randomIndex];
+  const itemText = await selectedItem.$('.fui-MenuItem__content').getText();
+  await selectedItem.click();
+  return itemText;
 }
 
 

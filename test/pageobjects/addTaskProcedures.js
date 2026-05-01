@@ -18,7 +18,7 @@ class TaskProcedures extends Page {
   async milestonesTask() {
     await AddTask.milestone.click();
     await browser.pause(1000);
-    await AddTask.selectRandomOption();
+    await AddTask.selectRandomMilestone();
     await browser.pause(1000);
    
   }
