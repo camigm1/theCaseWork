@@ -6,14 +6,14 @@ import Helpers from "./helpers.js";
 class Insights extends Page {
   //Main Selectors
 
-get insights(){
-  return $('[data-testid="vert-nav-insights"]')
-}
+  get insights() {
+    return $('[data-testid="vert-nav-insights"]');
+  }
 
-get filtersCheckbox(){
-  // return $('#checkbox-r3ui"')
-  return $('//input[@id=//label[text()="Filter By Case Type"]/@for]')
-}
+  get filtersCheckbox() {
+    // return $('#checkbox-r3ui"')
+    return $('//input[@id=//label[text()="Filter By Case Type"]/@for]');
+  }
 
   get timePeriod() {
     return $('[data-testid="time-period-filter-menu"]');
@@ -58,15 +58,25 @@ get filtersCheckbox(){
     return $('[data-testid="vert-nav-cases"]');
   }
 
-
   async selectRandomMenuItem() {
-  const items = await $$('[role="menuitemradio"]');
-  const randomIndex = Math.floor(Math.random() * items.length);
-  const selectedItem = items[randomIndex];
-  const itemText = await selectedItem.$('.fui-MenuItem__content').getText();
-  await selectedItem.click();
-  return { selectedItem, itemText };
-}
+    await $('[role="menuitemradio"]').waitForDisplayed({ timeout: 10000 });
+    const items = await $$('[role="menuitemradio"]');
+
+    if (items.length === 0) {
+      throw new Error("No menu items found");
+    }
+
+    const randomIndex = Math.floor(Math.random() * items.length);
+    const selectedItem = items[randomIndex];
+
+    if (!selectedItem) {
+      throw new Error(`No item found at index ${randomIndex}`);
+    }
+
+    const itemText = await selectedItem.$(".fui-MenuItem__content").getText();
+    await selectedItem.click();
+    return { selectedItem, itemText };
+  }
 }
 
 export default new Insights();

@@ -5,6 +5,11 @@ import Helpers from "./helpers.js";
 
 class Case extends Page {
   //Main Selectors
+
+  get title() {
+    return $(".fui-Title2");
+  }
+
   get createCaseBtn() {
     return $('[data-testid="add-case-create-button"]');
   }
@@ -244,8 +249,8 @@ class Case extends Page {
     const options = await menu.$$('[role="menuitemradio"]');
 
     if (options.length === 0) {
-        await browser.keys('Escape');
-        return null;
+      await browser.keys("Escape");
+      return null;
     }
 
     const random = Math.floor(Math.random() * options.length);
@@ -253,8 +258,8 @@ class Case extends Page {
     await browser.execute((el) => el.click(), options[random]);
 
     return selectedText;
-}
-async selectRandomClient() {
+  }
+  async selectRandomClient() {
     await browser.pause(500);
 
     const menu = await $('[role="menu"]');
@@ -263,8 +268,8 @@ async selectRandomClient() {
     const options = await menu.$$('[role="menuitemradio"]');
 
     if (options.length === 0) {
-        await browser.keys('Escape');
-        return null;
+      await browser.keys("Escape");
+      return null;
     }
 
     const random = Math.floor(Math.random() * options.length);
@@ -272,7 +277,7 @@ async selectRandomClient() {
     await browser.execute((el) => el.click(), options[random]);
 
     return selectedText;
-}
+  }
   //   async selectRandomOption() {
   //     await $(
   //       '[data-testid="undefined-03d38225-16c2-43a5-8659-37c9aab02dce-option"]',
@@ -327,7 +332,3 @@ async selectRandomClient() {
 }
 
 export default new Case();
-
-
-
-

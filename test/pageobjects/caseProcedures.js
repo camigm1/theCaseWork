@@ -5,7 +5,9 @@ import Menu from "./task.js";
 import Helpers from "./helpers.js";
 
 class CaseProcedures extends Page {
-  async caseName() {}
+  get caseName() {
+    return "This is a Case Name";
+  }
   //Creating an Event
   async createEvent() {
     await Case.addEvent.click();
@@ -13,6 +15,11 @@ class CaseProcedures extends Page {
     await Case.eventDate.click();
     await Case.selectDateTest();
     await Case.eventSave.click();
+  }
+
+  async chooseDate() {
+    await Case.retainedDatePicker.click();
+    await Case.selectDateTest();
   }
 
   async caseType() {

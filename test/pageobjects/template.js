@@ -2,17 +2,20 @@ import { $ } from "@wdio/globals";
 import Page from "./page.js";
 
 class Template extends Page {
-  get templateDashboardBtn(){
-    return $('[data-testid="vert-nav-templates"]')
+  get statusdropdownBtn() {
+    return $('//button[contains(., "New")]');
   }
 
-
-  get editDots(){
-    return $('[aria-label="More items"]')
+  get templateDashboardBtn() {
+    return $('[data-testid="vert-nav-templates"]');
   }
 
-  get edit(){
-    return $('[data-testid="custom-data-table-context-menu-item-Edit"]')
+  get editDots() {
+    return $('[aria-label="More items"]');
+  }
+
+  get edit() {
+    return $('[data-testid="custom-data-table-context-menu-item-Edit"]');
   }
 
   get saveTemplate() {
@@ -68,16 +71,16 @@ class Template extends Page {
     return $('[data-testid="milestone-template-submit-button"]');
   }
 
-  get milestoneDots(){
-    return $('[aria-label="More items"]')
+  get milestoneDots() {
+    return $('[aria-label="More items"]');
   }
 
-  get milestoneRemove(){
-    return $('[data-testid="custom-data-table-context-menu-item-Remove"]')
+  get milestoneRemove() {
+    return $('[data-testid="custom-data-table-context-menu-item-Remove"]');
   }
 
-  get milestoneConfirmDelete(){
-    return $('[data-testid="confirmation-dialog-confirm-button"]')
+  get milestoneConfirmDelete() {
+    return $('[data-testid="confirmation-dialog-confirm-button"]');
   }
 
   get addEvent() {
@@ -94,17 +97,20 @@ class Template extends Page {
     return $('[data-testid="event-template-dialog-save"]');
   }
 
-  get eventRemoveDots(){
-    return $('[aria-label="More items"]')
+  get eventRemoveDots() {
+    return $('[aria-label="More items"]');
   }
 
-  get eventRemove(){
-    return $('[data-testid="custom-data-table-context-menu-item-Remove"]')
+  get eventRemove() {
+    return $('[data-testid="custom-data-table-context-menu-item-Remove"]');
   }
 
   async selectRandomEngagement() {
-    await browser.execute((el) => el.click(), 
-    await $('[data-testid="edit-case-template-engagement-template-dropdown"]')
+    await browser.execute(
+      (el) => el.click(),
+      await $(
+        '[data-testid="edit-case-template-engagement-template-dropdown"]',
+      ),
     );
     await browser.pause(500);
 
@@ -114,8 +120,8 @@ class Template extends Page {
     const options = await menu.$$('[role="menuitemradio"]');
 
     if (options.length === 0) {
-        await browser.keys('Escape');
-        return null;
+      await browser.keys("Escape");
+      return null;
     }
 
     const random = Math.floor(Math.random() * options.length);
@@ -123,9 +129,7 @@ class Template extends Page {
     await browser.execute((el) => el.click(), options[random]);
 
     return selectedText;
+  }
 }
-}
-
-
 
 export default new Template();
