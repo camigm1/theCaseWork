@@ -240,25 +240,29 @@ class Case extends Page {
     return selectedText; // 👈 return the selected name
   }
 
-  async selectRandomCaseStatus() {
-    await browser.pause(500);
+  // async selectRandomCaseStatus() {
+  //   await browser.pause(500);
 
-    const menu = await $('[role="menu"]');
-    await menu.waitForExist({ timeout: 5000 });
+  //   const menu = await $('[role="menu"]');
+  //   await menu.waitForExist({ timeout: 5000 });
 
-    const options = await menu.$$('[role="menuitemradio"]');
+  //   const options = await menu.$$('[role="menuitemradio"]');
 
-    if (options.length === 0) {
-      await browser.keys("Escape");
-      return null;
-    }
+  //   if (options.length === 0) {
+  //     await browser.keys("Escape");
+  //     return null;
+  //   }
 
-    const random = Math.floor(Math.random() * options.length);
-    const selectedText = await options[random].getText();
-    await browser.execute((el) => el.click(), options[random]);
+  //   const random = Math.floor(Math.random() * options.length);
+  //   const selectedText = await options[random].getText();
+  //   await browser.execute((el) => el.click(), options[random]);
 
-    return selectedText;
-  }
+  //   return selectedText;
+  // }
+
+
+
+
   async selectRandomClient() {
     await browser.pause(500);
 
@@ -278,31 +282,27 @@ class Case extends Page {
 
     return selectedText;
   }
-  //   async selectRandomOption() {
-  //     await $(
-  //       '[data-testid="undefined-03d38225-16c2-43a5-8659-37c9aab02dce-option"]',
-  //     ).click();
+  
+
+  // async selectRandomMenuOption() {
+  //   await browser.pause(500);
+  //   await $(".fui-MenuList").waitForExist({ timeout: 5000 });
+  //   const items = await $$(".fui-MenuItemRadio");
+  //   console.log("Menu items found:", items.length);
+
+  //   if (items.length === 0) {
+  //     throw new Error("No menu items found");
   //   }
 
-  async selectRandomMenuOption() {
-    await browser.pause(500);
-    await $(".fui-MenuList").waitForExist({ timeout: 5000 });
-    const items = await $$(".fui-MenuItemRadio");
-    console.log("Menu items found:", items.length);
-
-    if (items.length === 0) {
-      throw new Error("No menu items found");
-    }
-
-    const random = Math.floor(Math.random() * items.length);
-    const selectedText = await browser.execute(
-      (el) => el.innerText.trim(),
-      items[random],
-    );
-    console.log("Selected text:", selectedText);
-    await browser.execute((el) => el.click(), items[random]);
-    return selectedText;
-  }
+  //   const random = Math.floor(Math.random() * items.length);
+  //   const selectedText = await browser.execute(
+  //     (el) => el.innerText.trim(),
+  //     items[random],
+  //   );
+  //   console.log("Selected text:", selectedText);
+  //   await browser.execute((el) => el.click(), items[random]);
+  //   return selectedText;
+  // }
 
   //EVENTS
   async selectDateTest() {

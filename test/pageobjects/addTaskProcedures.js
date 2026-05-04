@@ -23,7 +23,7 @@ class TaskProcedures extends Page {
    
   }
 
-  //John Doe from dropdown Case
+  //Figure out
   async specificCase() {
     await AddTask.caseInput.click();
     await browser.pause(1000);
