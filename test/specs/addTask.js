@@ -1,5 +1,6 @@
 import { expect } from "@wdio/globals";
 import { browser } from "@wdio/globals";
+import { privateInfo } from "../../privateInfo.js"
 import AddTask from "../pageobjects/task.js";
 import TaskProcedures from "../pageobjects/addTaskProcedures";
 import Case from "../pageobjects/case.js";
@@ -9,7 +10,7 @@ import Helpers from "../pageobjects/helpers.js";
 describe("Add Task Functionality", () => {
   before(async () => {
     await LoginPage.openLogin();
-    await LoginPage.login("CAMILA.GALLEGOS9317@STU.MTEC.EDU", "SoftwareQA!");
+    await LoginPage.login(privateInfo.username, privateInfo.password);
   });
 //   it("Positive Test:  Add Task Button ", async () => {
 //     await AddTask.addTaskBtn.click();
