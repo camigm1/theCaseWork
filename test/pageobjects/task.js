@@ -49,6 +49,22 @@ class AddTask extends Page {
     return $('[data-testid="task-dialog-cancel-button"]');
   }
   
+async selectRandomOptionTest() {
+    const listbox = await $('[role="listbox"]');
+    await listbox.waitForExist({ timeout: 5000 });
+    const options = await listbox.$$('[role="option"]');
+
+    if (options.length === 0) {
+      throw new Error("No options found in dropdown");
+    }
+
+    const random = Math.floor(Math.random() * options.length);
+    const selectedText = await options[random].getText();
+    await options[random].click();
+
+    return selectedText; // 👈 return the selected name
+  }
+
 
 async selectRandomCase() {
   const items = await $$('[role="menuitemradio"]');

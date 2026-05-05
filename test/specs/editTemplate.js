@@ -9,15 +9,15 @@ describe("Edit Template Functionality", () => {
     await LoginPage.openLogin();
     await LoginPage.login("CAMILA.GALLEGOS9317@STU.MTEC.EDU", "SoftwareQA!");
   });
-//   it("Positive Test: Input Status Checkbox", async () => {
-//     await Template.templateDashboardBtn.click();
-//     await TemplateProcedures.navigateAndOpen();
-//     await Template.statusdropdownBtn.click();
-//     const checkboxes = await $$(".fui-Checkbox__input");
-//     const randomIndex = Math.floor(Math.random() * checkboxes.length);
-//     await checkboxes[randomIndex].click();
-//     // await expect(checkboxes).toBeChecked();
-//   });
+  it("Positive Test: Input Status Checkbox", async () => {
+    await Template.templateDashboardBtn.click();
+    await TemplateProcedures.navigateAndOpen();
+    await Template.statusdropdownBtn.click();
+    const checkboxes = await insights.checkboxes;
+    const randomIndex = Math.floor(Math.random() * checkboxes.length);
+    await checkboxes[randomIndex].click();
+    // await expect(checkboxes).toBeChecked();
+  });
   it("Positive Test: Input required Information and Check Back to Templates functionality", async () => {
     await Template.templateDashboardBtn.click();
     await TemplateProcedures.navigateAndOpen();
@@ -54,20 +54,19 @@ describe("Edit Template Functionality", () => {
   //   //assert milestone was create-look for name?
   //   await expect($(`span=${TemplateProcedures.mileName}`)).toBeDisplayed();
   // });
-  // it("Positive Test: Remove Milestone", async () => {
-  //   const beforeRows = await $$('.fui-DataGridBody [role="row"]');
-  //   const beforeCount = beforeRows.length;
-  //   //   await TemplateProcedures.navigateAndOpen();
-  //   await Template.milestoneDots.click();
-  //   await Template.milestoneRemove.click();
-  //   await Template.milestoneConfirmDelete.click();
-  //   await browser.pause(1500); // wait for dialog to fully close
-  //   //assert that the milestone is not showing- one less in the list? or name removed?
-  //   const afterRows = await $$('.fui-DataGridBody [role="row"]');
-  //   const afterCount = afterRows.length;
-
-  //   expect(afterCount).toBe(beforeCount - 1);
-  // });
+  it("Positive Test: Remove Milestone", async () => {
+    const beforeRows = await Template.milestoneRowsBefore;
+    const beforeCount = beforeRows.length;
+    //   await TemplateProcedures.navigateAndOpen();
+    await Template.milestoneDots.click();
+    await Template.milestoneRemove.click();
+    await Template.milestoneConfirmDelete.click();
+    await browser.pause(1500); // wait for dialog to fully close
+    //assert that the milestone is not showing- one less in the list? or name removed?
+    const afterRows = await Template.milestoneRows;
+    const afterCount = afterRows.length;
+    expect(afterCount).toBe(beforeCount - 1);
+  });
   // it("Positive Test: Edit case template description with more than 200 words", async () => {
   //   const over200chars = "a".repeat(201);
   //   await Template.templateDescription.setValue(over200chars);

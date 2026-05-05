@@ -5,7 +5,14 @@ import Page from "../pageobjects/page.js"
 
 class InsightsteProcedures extends Page {
 
+async filtersCheckbox(){
+    await Insights.insights.click();
+    await Insights.filtersCheckbox.click();
+}
 
+async casesCount(){
+    
+}
 
 
 }

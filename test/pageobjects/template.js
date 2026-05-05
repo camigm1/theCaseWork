@@ -105,6 +105,14 @@ class Template extends Page {
     return $('[data-testid="custom-data-table-context-menu-item-Remove"]');
   }
 
+  get checkboxes(){
+    return $$(".fui-Checkbox__input")
+  }
+
+  get milestoneRows(){
+    return $$('.fui-DataGridBody [role="row"]')
+  }
+
   // async selectRandomEngagement() {
   //   await browser.execute(
   //     (el) => el.click(),

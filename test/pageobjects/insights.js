@@ -11,7 +11,6 @@ class Insights extends Page {
   }
 
   get filtersCheckbox() {
-    // return $('#checkbox-r3ui"')
     return $('//input[@id=//label[text()="Filter By Case Type"]/@for]');
   }
 
@@ -24,24 +23,7 @@ class Insights extends Page {
     );
   }
 
-  get month() {
-    return $(
-      '[data-testid="case-insights-time-period-filter-menu-This Month-option"]',
-    );
-  }
-
-  get last6Months() {
-    return $(
-      '[data-testid="case-insights-time-period-filter-menu-Last 6 Months-option"]',
-    );
-  }
-
-  get yearToDate() {
-    return $(
-      '[data-testid="case-insights-time-period-filter-menu-Year To Date-option"]',
-    );
-  }
-
+ 
   get totalCases() {
     return $(
       '[class="fui-Text ___g0or4u0 fk6fouc fkhj508 f1i3iumi fl43uef fpgzoln f1w7gpdv f6juhto f1gl81tg f2jf649"]',
@@ -58,6 +40,67 @@ class Insights extends Page {
     return $('[data-testid="vert-nav-cases"]');
   }
 
+  get closeBtn(){
+   return $("button=Close")
+  }
+
+
+  //Secondary Selectors
+  get rowsCountDashboard(){
+    return $$('.fui-DataGridBody [role="row"]')
+  }
+
+  get openCasesTile(){
+    return $(".fui-LargeTitle")
+  }
+
+  get caseTypeDropdownText(){
+    return $('//label[text()="Case Type"]')
+  }
+
+  get casesPageRowCount(){
+    return $$('.fui-DataGridBody [role="row"]')
+  }
+
+  get totalText(){
+    return $('//span[contains(text(), "Total:")]')
+  }
+
+  get pieChartUnknown(){
+    return $(
+      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-3",
+    )
+  }
+
+  get pieChartRows(){
+    return $$('[role="rowgroup"].fui-DataGridBody [role="row"]');
+  }
+
+  get selectedCasesText(){
+    return $('//span[text()="Selected Cases"]')
+  }
+
+  get newCasesPieChart(){
+    return $(
+      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-0",
+    )
+  }
+
+  get activeCasesPieChart(){
+    return $(
+      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-1",
+    )
+  }
+
+  get closedCasesPieChart(){
+    return $(
+      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-2",
+    )
+  }
+
+
+
+  //Functions
   async selectRandomMenuItem() {
     await $('[role="menuitemradio"]').waitForDisplayed({ timeout: 10000 });
     const items = await $$('[role="menuitemradio"]');
@@ -77,6 +120,29 @@ class Insights extends Page {
     await selectedItem.click();
     return { selectedItem, itemText };
   }
+
+
+  async selectRandomTimePeriod() {
+  // Open the dropdown
+  await $('[data-testid="time-period-filter-menu"]').click();
+
+  // Wait for options to appear
+  await $('[role="option"]').waitForDisplayed({ timeout: 5000 });
+
+  // Grab all options
+  const options = await $$('[role="option"]');
+
+  if (options.length === 0) throw new Error('No dropdown options found');
+
+  // Pick a random option
+  const randomIndex = Math.floor(Math.random() * options.length);
+  const randomOption = options[randomIndex];
+
+  const selectedText = await randomOption.getText();
+  await randomOption.click();
+
+  return selectedText.trim();
+}
 }
 
 export default new Insights();
