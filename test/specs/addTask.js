@@ -18,7 +18,7 @@ describe("Add Task Functionality", () => {
   });
   it("Positive Test: Task without choosing a Milestone- button not turning blue ", async () => {
     await TaskProcedures.firsttaskTextbox();
-    await browser.pause(2000);
+    await TaskProcedures.assignToTask();
     await TaskProcedures.specificCase();
     await AddTask.saveBtn.click();
     await expect(AddTask.saveBtn).toBeDisabled();

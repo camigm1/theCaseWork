@@ -13,13 +13,20 @@ class TaskProcedures extends Page {
     await AddTask.selectRandomUserOption();
   }
 
+  // async milestonesTask() {
+  //   await browser.execute((el) => el.click(), await AddTask.milestone);
+  //   // await AddTask.milestone.click();
+  //   await AddTask.selectRandomMilestone();
+  // }
+
   async milestonesTask() {
-    // await browser.execute((el) => el.click(), await AddTask.milestone);
-    await AddTask.milestone.click();
-    await AddTask.milestone.click();
-    await AddTask.milestone.click();
-    await AddTask.selectRandomMilestone();
-  }
+  await browser.execute((el) => el.click(), await AddTask.milestone);
+  
+  await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
+  await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
+  
+  await AddTask.selectRandomMilestone();
+}
 
   //Testing Case
   async specificCase() {

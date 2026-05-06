@@ -222,7 +222,6 @@ class Case extends Page {
     while (dismissButtons.length > 0) {
       await browser.execute((el) => el.click(), dismissButtons[0]);
       await this.confirmDelete.click();
-      await browser.pause(500);
       dismissButtons = await $$('[data-testid="party-control-dismiss-button"]');
     }
   }
