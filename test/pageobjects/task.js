@@ -10,6 +10,11 @@ class AddTask extends Page {
     return $('[data-testid="case-filter-menu"]');
   }
 
+
+  get control(){
+    return $('[data-testid*="case-control-"]')
+  }
+
   get milestone() {
     return $('[data-testid="milestone-dropdown-menu"]');
   }
@@ -102,6 +107,16 @@ class AddTask extends Page {
   //   return selectedText;
   // }
 
+async selectFirstCase() {
+  await $('[data-testid="case-filter-menu"]').waitForDisplayed({ timeout: 5000 });
+  await $('[data-testid="case-filter-menu"]').click();
+
+  const firstControl = $('[data-testid*="case-control-"]');
+  await firstControl.waitForExist({ timeout: 10000 });
+  await firstControl.waitForDisplayed({ timeout: 5000 });
+  await firstControl.click();
+}
+
   async selectRandomUserOption() {
     const items = await $$('[data-testid^="user-filter-menu-"]');
     console.log("User items found:", items.length);
@@ -164,19 +179,40 @@ class AddTask extends Page {
     return selectedText;
   }
 
-  async selectRandomMilestone() {
-    await $(
-      '[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]',
-    ).waitForExist({ timeout: 30000 });
-    const items = await $$(
-      '[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]',
-    );
-    const randomIndex = Math.floor(Math.random() * items.length);
-    const selectedItem = items[randomIndex];
-    const itemText = await selectedItem.$(".fui-MenuItem__content").getText();
-    await selectedItem.click();
-    return itemText;
-  }
+//   async selectRandomMilestone() {
+//   await this.milestone.click()
+//   const selector = '[data-testid*="milestone-dropdown-menu-"]'
+
+//   await $(selector).waitForExist({ timeout: 30000 });
+//   await $(selector).waitForDisplayed({ timeout: 10000 });
+//   await $(selector).waitForStable({ timeout: 5000 });
+
+//   const items = await $$(selector);
+//   const randomIndex = Math.floor(Math.random() * items.length);
+//   const selectedItem = items[randomIndex];
+
+//   await selectedItem.waitForDisplayed({ timeout: 5000 });
+//   await selectedItem.waitForStable({ timeout: 5000 });
+
+//   const itemText = await selectedItem.$(".fui-MenuItem__content").getText();
+//   await selectedItem.click();
+//   return itemText;
+// }
+
+async selectFirstMilestone() {
+  await this.milestone.click()
+  const selector = '[data-testid*="milestone-dropdown-menu-"]';
+
+  await $(selector).waitForExist({ timeout: 30000 });
+  await $(selector).waitForDisplayed({ timeout: 10000 });
+
+  const firstItem = $$(selector)[0];
+  await firstItem.waitForDisplayed({ timeout: 5000 });
+  await firstItem.waitForStable({ timeout: 5000 });
+  await firstItem.click();
+}
+
+
 }
 
 export default new AddTask();

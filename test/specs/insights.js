@@ -22,7 +22,7 @@
 //   it("Positive Test: Time Period dropdown functionality", async () => {
 //     await Insights.insights.click();
 //     await Insights.timePeriod.click();
-//     const selectedText = await Insights.selectRandomTimePeriod();
+//     const selectedText = await Insights.selectFirstTimePeriod()
 //     const cardLabel = await Insights.timePeriod.getText();
 //     expect(cardLabel).toContain(selectedText);
 //   });

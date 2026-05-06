@@ -143,6 +143,23 @@ class Insights extends Page {
 
   return selectedText.trim();
 }
+
+// async selectFirstTimePeriod() {
+//   await $('[data-testid="time-period-filter-menu"]').waitForDisplayed({ timeout: 5000 });
+//   await $('[data-testid="time-period-filter-menu"]').click();
+
+//   const firstOption = $('[data-testid^="time-period-filter-menu-"][data-testid$="-option"]');
+//   await firstOption.waitForExist({ timeout: 10000 });
+//   await firstOption.waitForDisplayed({ timeout: 5000 });
+//   await firstOption.click();
+// }
+
+async selectFirstTimePeriod() {
+  const firstOption = $('[data-testid^="time-period-filter-menu-"]');
+  await firstOption.waitForExist({ timeout: 10000 });
+  await firstOption.waitForDisplayed({ timeout: 5000 });
+  await firstOption.click();
+}
 }
 
 export default new Insights();
