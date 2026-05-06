@@ -9,21 +9,19 @@ class TaskProcedures extends Page {
   async caseName() {}
 
   async assignToTask() {
-    await browser.execute((el) => el.click(), await AddTask.assignTo);
+    await AddTask.assignTo.click();
     await browser.pause(1000);
     await AddTask.selectRandomUserOption();
     await browser.pause(1000);
   }
 
   async milestonesTask() {
+    // await browser.execute((el) => el.click(), await AddTask.milestone);
     await AddTask.milestone.click();
-    await browser.pause(1000);
     await AddTask.selectRandomMilestone();
-    await browser.pause(1000);
-   
   }
 
-  //Figure out
+  //Testing Case
   async specificCase() {
     await AddTask.caseInput.click();
     await browser.pause(1000);
@@ -40,7 +38,9 @@ class TaskProcedures extends Page {
     await browser.pause(1000);
     await browser.execute(
       (el) => el.click(),
-      await $('[data-testid="case-filter-menu-9b907304-b1d1-4625-b2fc-b9d5daa43328-option"]')
+      await $(
+        '[data-testid="case-filter-menu-9b907304-b1d1-4625-b2fc-b9d5daa43328-option"]',
+      ),
     );
   }
 
@@ -51,15 +51,14 @@ class TaskProcedures extends Page {
     await Case.selectDateTest();
   }
 
- async firsttaskTextbox() {
+  async firsttaskTextbox() {
     await AddTask.taskToComplete.click();
     await browser.pause(500);
-    await AddTask.taskToComplete.setValue('Hellooooo');
-    await AddTask.taskToComplete.setValue('Testing');
+    await AddTask.taskToComplete.setValue("Hellooooo");
+    await AddTask.taskToComplete.setValue("Testing");
     // await browser.keys("AUTOTEST Negative Task " + Date.now());
     await AddTask.taskToComplete.click();
   }
-
 
   async taskTextbox() {
     await AddTask.taskToComplete.click();

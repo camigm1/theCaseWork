@@ -10,11 +10,11 @@ class Case extends Page {
     return $(".fui-Title2");
   }
 
-  get createCaseBtn() {
+  get saveCaseBtn() {
     return $('[data-testid="add-case-create-button"]');
   }
-  get button() {
-    return $('[data-testid="link-button-Create Case"]');
+  get createCaseBtn() {
+    return $('[data-testid="link-button-Create Case"]').click();
   }
 
   get caseName() {
@@ -240,29 +240,6 @@ class Case extends Page {
     return selectedText; // 👈 return the selected name
   }
 
-  // async selectRandomCaseStatus() {
-  //   await browser.pause(500);
-
-  //   const menu = await $('[role="menu"]');
-  //   await menu.waitForExist({ timeout: 5000 });
-
-  //   const options = await menu.$$('[role="menuitemradio"]');
-
-  //   if (options.length === 0) {
-  //     await browser.keys("Escape");
-  //     return null;
-  //   }
-
-  //   const random = Math.floor(Math.random() * options.length);
-  //   const selectedText = await options[random].getText();
-  //   await browser.execute((el) => el.click(), options[random]);
-
-  //   return selectedText;
-  // }
-
-
-
-
   async selectRandomClient() {
     await browser.pause(500);
 
@@ -282,27 +259,6 @@ class Case extends Page {
 
     return selectedText;
   }
-  
-
-  // async selectRandomMenuOption() {
-  //   await browser.pause(500);
-  //   await $(".fui-MenuList").waitForExist({ timeout: 5000 });
-  //   const items = await $$(".fui-MenuItemRadio");
-  //   console.log("Menu items found:", items.length);
-
-  //   if (items.length === 0) {
-  //     throw new Error("No menu items found");
-  //   }
-
-  //   const random = Math.floor(Math.random() * items.length);
-  //   const selectedText = await browser.execute(
-  //     (el) => el.innerText.trim(),
-  //     items[random],
-  //   );
-  //   console.log("Selected text:", selectedText);
-  //   await browser.execute((el) => el.click(), items[random]);
-  //   return selectedText;
-  // }
 
   //EVENTS
   async selectDateTest() {
@@ -321,11 +277,8 @@ class Case extends Page {
     }, eventCard);
 
     await browser.pause(1000);
-
-    // click delete via JS
     const deleteBtn = await $('[data-testid^="case-event-delete-"]');
     await browser.execute((el) => el.click(), deleteBtn);
-
     await this.confirmDelete.waitForDisplayed({ timeout: 5000 });
     await this.confirmDelete.click();
   }
