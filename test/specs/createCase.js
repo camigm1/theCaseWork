@@ -15,17 +15,14 @@
 //   });
 //   it("Positive Test: Billing Toggle to Fixed Rate", async () => {
 //     await Case.billingToggle.click();
-//     await browser.pause(3000);
 //     await expect(Case.fixedFeeInput).toExist();
 //   });
 //   //   it("Positive Test: Billing Toggle Input in Fixed Rate", async () => {
 //   //     await Case.fixedFeeInput.setValue(123456789);
-//   //     await browser.pause(3000);
 //   //     // await expect(Case.fixedFeeInput).toExist();
 //   //   });
 //   it("Positive Test: Billing Toggle to Estimated Hours", async () => {
 //     await Case.billingToggle.click();
-//     await browser.pause(3000);
 //     await expect(Case.estHours).toExist();
 //   });
 //   it("Positive Test: Assign A user, then remove", async () => {
@@ -54,6 +51,7 @@
 //     await expect($(`=${CaseProcedures.caseName}`)).toBeDisplayed();
 //   });
 //   it("Positive Test: Add an Event, then remove", async () => {
+//     // await Case.casePageBtn.click();
 //     await browser.refresh();
 //     await CaseProcedures.createEvent();
 //     await Case.deleteFirstEvent();
@@ -87,45 +85,44 @@
 //     await Case.createCaseBtn;
 //     await expect($(`=${thingy}`)).toBeDisplayed();
 //   });
-//   //   it("Positive Test: Checks for Retained By dropdown election-DONE", async () => {
-//   //     //   await browser.refresh();
-//   //     await Case.retainedBy.click();
-//   //     const selectedText = await Case.selectRandomOption()
-//   //     const cleanedText = selectedText.split('\n').pop().trim();
-//   //     const cardLabel = await $('[data-testid="client-party-dropdown"]').getText();
-//   //     expect(cardLabel).toEqual(cleanedText);
-//   //   });
-//   //   it("Positive Test: Checks for Retained By dropdown CARD-MANUAL?", async () => {
-//   //     //   await browser.refresh();
-//   //     await Case.retainedBy.click();
-//   //     const selectedText = await Case.selectRandomOption()
-//   //     const cleanedText = selectedText.split('\n').pop().trim();
-//   //     const cardLabel = await $('[id^="infolabel"]').getText();
-//   //     expect(cardLabel).toEqual(cleanedText);
-//   //   });
-//   // it("Positive Test: Check for Adding all Affiliated users and removing", async () => {
-//   //   await Case.addAffiliated.click();
-//   //   await Case.selectAllAffiliatedParties();
-//   //   await Case.removeAllAffiliatedParties();
+//   it("Positive Test: Checks for Retained By dropdown election-DONE", async () => {
+//       //   await browser.refresh();
+//     await Case.retainedBy.click();
+//     const selectedText = await Case.selectRandomOption()
+//     const cleanedText = selectedText.split('\n').pop().trim();
+//     const cardLabel = await $('[data-testid="client-party-dropdown"]').getText();
+//     expect(cardLabel).toEqual(cleanedText);
+//   });
+//    it("Positive Test: Checks for Retained By dropdown CARD-MANUAL?", async () => {
+//       //   await browser.refresh();
+//     await Case.retainedBy.click();
+//     const selectedText = await Case.selectRandomOption()
+//     const cleanedText = selectedText.split('\n').pop().trim();
+//     const cardLabel = await $('[id^="infolabel"]').getText();
+//     expect(cardLabel).toEqual(cleanedText);
+//     });
+//   it("Positive Test: Check for Adding all Affiliated users and removing", async () => {
+//     await Case.addAffiliated.click();
+//     await Case.selectAllAffiliatedParties();
+//     await Case.removeAllAffiliatedParties();
 
-//   //   const remainingParties = await $$(
-//   //     '[data-testid="party-control-dismiss-button"]',
-//   //   );
-//   //   await expect(remainingParties.length).toBe(0);
-//   // });
-//   //   it("Negative Test: Input more than 2000 characters in notes textbox", async () => {
-//   //     const over2000chars = "a".repeat(2001);
-//   //     await Case.notesTextbox.setValue(over2000chars);
-//   //     const actualValue = await Case.notesTextbox.getValue();
-//   //     await expect(actualValue.length).toBeLessThanOrEqual(2000);
-//   //   });
-//   //     it("Positive Test: Input more than 200 characters in description textbox", async () => {
-//   //       const over200chars = "a".repeat(201);
-//   //       await Case.descriptionTextbox.setValue(over200chars);
-
-//   //       const actualValue = await Case.descriptionTextbox.getValue();
-//   //       await expect(actualValue.length).toBeLessThanOrEqual(200);
-//   //     });
+//     const remainingParties = await $$(
+//       '[data-testid="party-control-dismiss-button"]',
+//     );
+//     await expect(remainingParties.length).toBe(0);
+//   });
+//   it("Negative Test: Input more than 2000 characters in notes textbox", async () => {
+//     const over2000chars = "a".repeat(2001);
+//     await Case.notesTextbox.setValue(over2000chars);
+//     const actualValue = await Case.notesTextbox.getValue();
+//     await expect(actualValue.length).toBeLessThanOrEqual(2000);
+//     });
+//   it("Positive Test: Input more than 200 characters in description textbox", async () => {
+//     const over200chars = "a".repeat(201);
+//     await Case.descriptionTextbox.setValue(over200chars);
+//     const actualValue = await Case.descriptionTextbox.getValue();
+//     await expect(actualValue.length).toBeLessThanOrEqual(200);
+//     });
 //   // it("Positive Test: Inputs more than 2000 charachters into the Overview textbox", async () => {
 //   //   const over2000chars = "a".repeat(2001);
 //   //   await Case.overviewTextbox.setValue(over2000chars);
@@ -133,23 +130,21 @@
 //   //   const actualValue = await Case.overviewTextbox.getValue();
 //   //   await expect(actualValue.length).toBeLessThanOrEqual(2000);
 //   // });
-//   //   it("Positive Test: Assign All users, then remove- GOOD- rewrite test case", async () => {
-//   //     await Case.assignTo.click();
-//   //     await Case.selectAllUsers();
-//   //     await Case.removeAllUsers();
-//   //     const assignedToContent = await $(
-//   //       '[data-testid="case-assigned-to-content"]',
-//   //     );
-//   //     const remainingUsers = await assignedToContent.$$(
-//   //       '[data-testid="person-control-delete-button"]',
-//   //     );
-//   //     await expect(remainingUsers.length).toBe(0);
-//   //   });
-//   //   it("Positive Test: Reload browser", async () => {
-//   //     await browser.refresh();
-//   //     const thingy = "This Case Name";
-//   //     await Case.caseName.setValue(thingy);
-//   //     await browser.refresh();
-//   //     await expect($(`=${thingy}`)).not.toExist();
-//   //   });
+//   it("Positive Test: Assign All users, then remove- GOOD- rewrite test case", async () => {
+//     await Case.assignTo.click();
+//     await Case.selectAllUsers();
+//     await Case.removeAllUsers();
+//     const assignedToContent = await Case.checkAssignedTo;
+//     const remainingUsers = await assignedToContent.$$(
+//         '[data-testid="person-control-delete-button"]',
+//       );
+//     await expect(remainingUsers.length).toBe(0);
+//     });
+//   it("Positive Test: Reload browser", async () => {
+//     await browser.refresh();
+//     const thingy = "This Case Name";
+//     await Case.caseName.setValue(thingy);
+//     await browser.refresh();
+//     await expect($(`=${thingy}`)).not.toExist();
+//   });
 // });

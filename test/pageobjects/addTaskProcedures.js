@@ -23,15 +23,12 @@ class TaskProcedures extends Page {
 
   //Testing Case
   async specificCase() {
-    await AddTask.caseInput.click();
-    await browser.pause(1000);
-    await browser.execute(
-      (el) => el.click(),
-      await $(
-        '[data-testid="case-filter-menu-4ee4d161-1c99-4a1e-8730-59e8d951de1f-option"]',
-      ),
-    );
-  }
+  await AddTask.caseInput.click();
+
+  const caseOption = $('[data-testid="case-filter-menu-4ee4d161-1c99-4a1e-8730-59e8d951de1f-option"]');
+  await caseOption.waitForDisplayed({ timeout: 5000 });
+  await caseOption.click();
+}
 
   async eeveeCase() {
     await AddTask.caseInput.click();

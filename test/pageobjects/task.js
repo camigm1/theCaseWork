@@ -167,7 +167,7 @@ class AddTask extends Page {
   async selectRandomMilestone() {
     await $(
       '[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]',
-    ).waitForDisplayed({ timeout: 30000 });
+    ).waitForExist({ timeout: 30000 });
     const items = await $$(
       '[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]',
     );

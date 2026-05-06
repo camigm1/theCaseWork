@@ -6,6 +6,10 @@ import Helpers from "./helpers.js";
 class Case extends Page {
   //Main Selectors
 
+
+  get casePageBtn(){
+    return $('[data-testid="cases-page-create-case-button"]')
+  }
   get title() {
     return $(".fui-Title2");
   }
@@ -196,7 +200,6 @@ class Case extends Page {
 
     while (deleteButtons.length > 0) {
       await deleteButtons[0].click();
-      await browser.pause(500);
       deleteButtons = await $$('[data-testid="person-control-delete-button"]');
     }
   }
@@ -237,22 +240,18 @@ class Case extends Page {
     const selectedText = await options[random].getText();
     await options[random].click();
 
-    return selectedText; // 👈 return the selected name
+    return selectedText; 
   }
 
   async selectRandomClient() {
-    await browser.pause(500);
-
     const menu = await $('[role="menu"]');
     await menu.waitForExist({ timeout: 5000 });
-
     const options = await menu.$$('[role="menuitemradio"]');
 
     if (options.length === 0) {
       await browser.keys("Escape");
       return null;
     }
-
     const random = Math.floor(Math.random() * options.length);
     const selectedText = await options[random].getText();
     await browser.execute((el) => el.click(), options[random]);
@@ -262,26 +261,20 @@ class Case extends Page {
 
   //EVENTS
   async selectDateTest() {
-    await browser.pause(1000);
-    // await $(".fui-CalendarDayGrid__table").waitForExist({ timeout: 10000 });
     await this.eventTodayMarker.click();
   }
 
+  
   async deleteFirstEvent() {
-    const eventCard = await $(".___1i2sot1");
+  const eventCard = $(".___asxt7x0");
 
-    // trigger hover via JS
-    await browser.execute((el) => {
-      el.dispatchEvent(new MouseEvent("mouseover", { bubbles: true }));
-      el.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
-    }, eventCard);
-
-    await browser.pause(1000);
-    const deleteBtn = await $('[data-testid^="case-event-delete-"]');
-    await browser.execute((el) => el.click(), deleteBtn);
-    await this.confirmDelete.waitForDisplayed({ timeout: 5000 });
-    await this.confirmDelete.click();
-  }
+  await eventCard.moveTo();
+  const deleteBtn = $('[data-testid^="case-event-delete-"]');
+  await deleteBtn.waitForDisplayed({ timeout: 5000 });
+  await deleteBtn.click();
+  await this.confirmDelete.waitForDisplayed({ timeout: 5000 });
+  await this.confirmDelete.click();
+}
 }
 
 export default new Case();
