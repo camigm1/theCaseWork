@@ -9,29 +9,37 @@
 //   before(async () => {
 //     await LoginPage.openLogin();
 //     await LoginPage.login(privateInfo.username, privateInfo.password);
-//   });
-//   it("Positive Test: Input Status Checkbox", async () => {
 //     await Template.templateDashboardBtn.click();
+// });
+//   it("Positive Test: Engagement Template Dropdown", async () => {
 //     await TemplateProcedures.navigateAndOpen();
-//     await Template.statusdropdownBtn.click();
-//     const checkboxes = await insights.checkboxes;
-//     const randomIndex = Math.floor(Math.random() * checkboxes.length);
-//     await checkboxes[randomIndex].click();
-//     await expect(checkboxes).toBeChecked();
+//     await Template.engagement.click();
+//     await browser.pause(3000);
+//     const selected = await Case.selectRandomOption();
+//     await expect(Template.engagement).toHaveText(selected);
 //   });
+//   // it("Positive Test: Input Status Checkbox", async () => {
+//   //   await Template.templateDashboardBtn.click();
+//   //   await TemplateProcedures.navigateAndOpen();
+//   //   await Template.statusdropdownBtn.click();
+//   //   const checkboxes = await insights.checkboxes;
+//   //   const randomIndex = Math.floor(Math.random() * checkboxes.length);
+//   //   await checkboxes[randomIndex].click();
+//   //   await expect(checkboxes).toBeChecked();
+//   // });
 //   it("Positive Test: Input required Information and Check Back to Templates functionality", async () => {
-//     await Template.templateDashboardBtn.click();
-//     await TemplateProcedures.navigateAndOpen();
+//     // await Template.templateDashboardBtn.click();
+//     // await TemplateProcedures.navigateAndOpen();
 //     await Template.name.setValue("Pikachu version");
 //     await Template.templateDescription.setValue("description");
 //     await Template.saveTemplate.click();
 //     await Template.backToTemplates.click();
 //     await expect($("span=Pikachu version")).toBeDisplayed();
 //   });
-//   it("Positive Test: Three dots Pencil", async () => {
-//     await TemplateProcedures.navigateAndOpen();
-//     //    await Helpers.assertsExistText(Template.caseType(),'Select Case Type')
-//   });
+// //   it("Positive Test: Three dots Pencil", async () => {
+// //     await TemplateProcedures.navigateAndOpen();
+// //     //    await Helpers.assertsExistText(Template.caseType(),'Select Case Type')
+// //   });
 //   it("Positive Test: click on cancel button functionality", async () => {
 //     await TemplateProcedures.navigateAndOpen();
 //     const templateName = "AUTOTEST Task " + Date.now();
@@ -47,12 +55,12 @@
 //     await expect(Template.saveTemplate).toBeDisabled();
 //   });
 //   it("Positive Test: Add a Milestone", async () => {
-//     await TemplateProcedures.navigateAndOpen();
+//     // await TemplateProcedures.navigateAndOpen();
 //     await TemplateProcedures.createMilestone(TemplateProcedures.mileName);
 //     await expect($(`span=${TemplateProcedures.mileName}`)).toBeDisplayed();
 //   });
 //   it("Positive Test: Remove Milestone", async () => {
-//     const beforeRows = await Template.milestoneRowsBefore;
+//     const beforeRows = await Template.milestoneRows;
 //     const beforeCount = beforeRows.length;
 //     //   await TemplateProcedures.navigateAndOpen();
 //     await Template.milestoneDots.click();
@@ -77,15 +85,16 @@
 //     const actualValue = await Template.templateDefaultText.getValue();
 //     await expect(actualValue.length).toBeLessThanOrEqual(200);
 //   });
-//   it("Positive Test: Initial notes word limit SHOULD be 2000-REPORTED BUG", async () => {
-//     const over2000chars = "a".repeat(2001);
-//     await Template.notes.setValue(over2000chars);
-//     const actualValue = await Template.notes.getValue();
-//     await expect(actualValue.length).toBeLessThanOrEqual(2000);
-//   });
+// //   it("Positive Test: Initial notes word limit SHOULD be 2000-REPORTED BUG", async () => {
+// //     const over2000chars = "a".repeat(2001);
+// //     await Template.notes.setValue(over2000chars);
+// //     const actualValue = await Template.notes.getValue();
+// //     await expect(actualValue.length).toBeLessThanOrEqual(2000);
+// //   });
 //   it("Positive Test: Add an Event ", async () => {
 //     const eventName = "this event name";
 //     await TemplateProcedures.addEvent(eventName);
+//     await TemplateProcedures.addEvent('Changing it');
 //     await Template.saveTemplate.click();
 //     await expect($(`span=${eventName}`)).toBeDisplayed();
 //   });
@@ -95,16 +104,11 @@
 //     await TemplateProcedures.removeEvent();
 //     await expect($(`span=${eventName2}`)).not.toBeDisplayed();
 //   });
-//   it("Positive Test: Engagement Template Dropdown", async () => {
-//     await TemplateProcedures.navigateAndOpen();
-//     await Template.engagement.click();
-//     await browser.pause(3000);
-//     const selected = await Case.selectRandomOption();
-//     await expect(Template.engagement).toHaveText(selected);
-//   });
+  
 //   it("Positive Test: Reload Template", async () => {
 //     await Template.name.setValue(Template.dinamicName);
 //     await browser.refresh();
 //     await expect($(`=${Template.dinamicName}`)).not.toExist();
 //   });
+  
 // });

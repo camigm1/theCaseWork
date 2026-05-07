@@ -14,6 +14,7 @@ class TaskProcedures extends Page {
   }
 
   async milestonesTask() {
+    await AddTask.milestone.click();
     await AddTask.selectFirstMilestone();
   }
 

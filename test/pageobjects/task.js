@@ -117,6 +117,16 @@ async selectFirstCase() {
   await firstControl.click();
 }
 
+// async selectFirstCase() {
+//   const firstControl = $('[data-testid*="case-control-"]');
+//   await firstControl.waitForExist({ timeout: 10000 });
+//   await firstControl.waitForDisplayed({ timeout: 5000 });
+
+//   const itemText = await firstControl.getText();
+//   await firstControl.click();
+//   return itemText;
+// }
+
   async selectRandomUserOption() {
     const items = await $$('[data-testid^="user-filter-menu-"]');
     console.log("User items found:", items.length);
@@ -200,7 +210,7 @@ async selectFirstCase() {
 // }
 
 async selectFirstMilestone() {
-  await this.milestone.click()
+  
   const selector = '[data-testid*="milestone-dropdown-menu-"]';
 
   await $(selector).waitForExist({ timeout: 30000 });

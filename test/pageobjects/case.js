@@ -231,9 +231,9 @@ class Case extends Page {
     await listbox.waitForExist({ timeout: 5000 });
     const options = await listbox.$$('[role="option"]');
 
-    if (options.length === 0) {
-      throw new Error("No options found in dropdown");
-    }
+    // if (options.length === 0) {
+    //   throw new Error("No options found in dropdown");
+    // }
 
     const random = Math.floor(Math.random() * options.length);
     const selectedText = await options[random].getText();
@@ -242,21 +242,7 @@ class Case extends Page {
     return selectedText; 
   }
 
-  async selectRandomClient() {
-    const menu = await $('[role="menu"]');
-    await menu.waitForExist({ timeout: 5000 });
-    const options = await menu.$$('[role="menuitemradio"]');
-
-    if (options.length === 0) {
-      await browser.keys("Escape");
-      return null;
-    }
-    const random = Math.floor(Math.random() * options.length);
-    const selectedText = await options[random].getText();
-    await browser.execute((el) => el.click(), options[random]);
-
-    return selectedText;
-  }
+ 
 
   //EVENTS
   async selectDateTest() {
