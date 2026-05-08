@@ -34,8 +34,21 @@
 //     const totalCount = parseInt(total.replace(/\D/g, ""));
 //     expect(rows.length).toEqual(totalCount);
 //   });
+// //   it("Positive Test: Confirm Unknown cases pop-up", async () => {
+// //     await browser.refresh();
+// //     await Insights.pieChartUnknown.click();
+// //     await $('[role="rowgroup"].fui-DataGridBody').waitForDisplayed({
+// //       timeout: 30000,
+// //     });
+// //     const rows = await Insights.pieChartUnknownRows;
+// //     console.log(rows);
+// //     const selectedCasesTitle = await Insights.selectedCasesText;
+// //     await expect(selectedCasesTitle).toBeDisplayed();
+// //     await Insights.closeBtn.click();
+// //   });
 //   it("Positive Test: Confirm Unknown cases pop-up", async () => {
 //     await browser.refresh();
+//     await Insights.pieChartUnknown.waitForDisplayed({ timeout: 30000 });
 //     await Insights.pieChartUnknown.click();
 //     await $('[role="rowgroup"].fui-DataGridBody').waitForDisplayed({
 //       timeout: 30000,

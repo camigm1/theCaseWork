@@ -14,10 +14,19 @@ class TaskProcedures extends Page {
   }
 
   async milestonesTask() {
+    await browser.waitUntil(
+         async () => await AddTask.milestone.isDisplayed(),
+         {
+           timeout: 30000,
+           timeoutMsg: "Milestone dropdown failed to display after 30s",
+           interval: 500,
+         }
+       );
     await AddTask.milestone.click();
     await AddTask.selectFirstMilestone();
   }
 
+<<<<<<< HEAD
   //   async milestonesTask() {
   //   // await browser.execute((el) => el.click(), await AddTask.milestone);
   //   await AddTask.milestone.click();
@@ -26,6 +35,23 @@ class TaskProcedures extends Page {
 
   //   await AddTask.selectRandomMilestone();
   // }
+=======
+  async makeNote(){
+    await AddTask.discussionTab.click();
+    await AddTask.caseNoteInput.setValue('Leaving a note')
+    await AddTask.saveNote.click();
+    await AddTask.detailsTab.click();
+  }
+
+//   async milestonesTask() {
+//   // await browser.execute((el) => el.click(), await AddTask.milestone);
+//   await AddTask.milestone.click();
+//   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
+//   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
+  
+//   await AddTask.selectRandomMilestone();
+// }
+>>>>>>> 2b9f189 (add task working-changes)
 
   //Testing Case
   async specificCase() {
@@ -49,17 +75,17 @@ class TaskProcedures extends Page {
   }
 
   async dueByDate() {
-    await AddTask.dueBy.click();
+    // await AddTask.dueBy.click();
     await AddTask.datePicker.click();
     await Case.selectDateTest();
   }
 
   async firsttaskTextbox() {
-    await AddTask.taskToComplete.click();
-    await AddTask.taskToComplete.setValue("Hellooooo");
-    await AddTask.taskToComplete.setValue("Testing");
+    await AddTask.taskDescription.click();
+    await AddTask.taskDescription.setValue("Hellooooo");
+    await AddTask.taskDescription.setValue("Testing");
     // await browser.keys("AUTOTEST Negative Task " + Date.now());
-    await AddTask.taskToComplete.click();
+    await AddTask.taskDescription.click();
   }
 
   async taskTextbox() {

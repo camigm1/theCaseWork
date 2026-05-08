@@ -76,17 +76,6 @@
 //     await CaseProcedures.affiliatedUser();
 //     await expect(Case.saveCaseBtn).toBeDisabled();
 //   });
-//   it("Positive Test: Test Only Required Fields", async () => {
-//     await browser.refresh();
-//     const thingy = "This Case Name is a Test";
-//     await Case.caseName.setValue(thingy);
-//     await Case.retainedDatePicker.click();
-//     await Case.selectDateTest();
-//     await Case.retainedBy.click();
-//     await Case.selectRandomOption();
-//     await Case.saveCaseBtn;
-//     await expect($(`=${thingy}`)).toBeDisplayed();
-//   });
 //   it("Positive Test: Checks for Retained By dropdown election-DONE", async () => {
 //       //   await browser.refresh();
 //     await Case.retainedBy.click();
@@ -142,6 +131,17 @@
 //       );
 //     await expect(remainingUsers.length).toBe(0);
 //     });
+//     it("Positive Test: Test Only Required Fields", async () => {
+//     await browser.refresh();
+//     const thingy = "This Case Name is a Test";
+//     await Case.caseName.setValue(thingy);
+//     await Case.retainedDatePicker.click();
+//     await Case.selectDateTest();
+//     await Case.retainedBy.click();
+//     await Case.selectRandomOption();
+//     await Case.saveCaseBtn.click();
+//     await expect($(`=${thingy}`)).toBeDisplayed();
+//   });
 //   it("Positive Test: Reload browser", async () => {
 //     await browser.refresh();
 //     const thingy = "This Case Name";

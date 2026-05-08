@@ -6,6 +6,10 @@ class AddTask extends Page {
     return $('[data-testid="link-button-Add Task"]');
   }
 
+  get title(){
+    return $('[data-testid="editable-label-title"]')
+  }
+
   get caseInput() {
     return $('[data-testid="case-filter-menu"]');
   }
@@ -27,7 +31,7 @@ class AddTask extends Page {
       '[data-testid="case-filter-menu-9b907304-b1d1-4625-b2fc-b9d5daa43328-option"]',
     );
   }
-  get taskToComplete() {
+  get taskDescription() {
     return $('[data-testid="task-dialog-textarea"]');
   }
 
@@ -35,10 +39,7 @@ class AddTask extends Page {
     return $('[data-testid="task-dialog-billable-button"]');
   }
 
-  get dueBy() {
-    return $('[data-testid="task-dialog-dueby-checkbox"]');
-  }
-
+  
   get datePicker() {
     return $('[data-testid="task-dialog-datepicker"]');
   }
@@ -50,6 +51,50 @@ class AddTask extends Page {
   get cancelBtn() {
     return $('[data-testid="task-dialog-cancel-button"]');
   }
+
+  //New btns
+  get results(){
+    return $('[data-testid="task-dialog-results"]')
+  }
+
+  get category(){
+    return $('[data-testid="task-dialog-category"]')
+  }
+
+  get effort(){
+    return $('[data-testid="task-dialog-estimated-hours"]')
+  }
+
+
+  get discussionTab(){
+    return $('button[role="tab"][value="Discussion"]')
+  }
+  
+  get caseNoteInput(){
+    return $('[data-testid="case-note-input"]')
+  }
+
+get saveNote(){
+  return $('[data-testid="case-note-add-button"]')
+}
+  get detailsTab(){
+    return $('button[role="tab"][value="Details"]')
+  }
+
+
+  get confirmationCancelYes(){
+return $('[data-testid="confirmation-dialog-confirm-button"]')
+  }
+
+
+  get confirmationCancelNo(){
+    return $('[data-testid="confirmation-dialog-cancel-button"]')
+  }
+
+  
+
+
+
 
   async selectRandomOptionTest() {
     const listbox = await $('[role="listbox"]');
