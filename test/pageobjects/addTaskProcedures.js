@@ -26,7 +26,6 @@ class TaskProcedures extends Page {
     await AddTask.selectFirstMilestone();
   }
 
-<<<<<<< HEAD
   //   async milestonesTask() {
   //   // await browser.execute((el) => el.click(), await AddTask.milestone);
   //   await AddTask.milestone.click();
@@ -35,7 +34,6 @@ class TaskProcedures extends Page {
 
   //   await AddTask.selectRandomMilestone();
   // }
-=======
   async makeNote(){
     await AddTask.discussionTab.click();
     await AddTask.caseNoteInput.setValue('Leaving a note')
@@ -51,7 +49,6 @@ class TaskProcedures extends Page {
   
 //   await AddTask.selectRandomMilestone();
 // }
->>>>>>> 2b9f189 (add task working-changes)
 
   //Testing Case
   async specificCase() {
