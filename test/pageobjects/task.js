@@ -10,9 +10,8 @@ class AddTask extends Page {
     return $('[data-testid="case-filter-menu"]');
   }
 
-
-  get control(){
-    return $('[data-testid*="case-control-"]')
+  get control() {
+    return $('[data-testid*="case-control-"]');
   }
 
   get milestone() {
@@ -78,70 +77,87 @@ class AddTask extends Page {
     return name;
   }
 
+  // async selectFirstCase() {
+  //   await $('[data-testid="case-filter-menu"]').waitForDisplayed({
+  //     timeout: 5000,
+  //   });
+  //   await $('[data-testid="case-filter-menu"]').click();
+
+  //   const firstControl = $('[data-testid*="case-control-"]');
+  //   await firstControl.waitForExist({ timeout: 10000 });
+  //   await firstControl.waitForDisplayed({ timeout: 5000 });
+  //   await firstControl.click();
+  // }
+
+  async selectFirstCase() {
+    await $('[data-testid="case-filter-menu"]').waitForDisplayed({
+      timeout: 5000,
+    });
+    await $('[data-testid="case-filter-menu"]').click();
+
+    const firstControl = $('[data-testid*="case-control-"]');
+    await firstControl.waitForExist({ timeout: 10000 });
+    await firstControl.waitForDisplayed({ timeout: 5000 });
+
+    const selectedText = await firstControl
+      .$(".fui-Persona__primaryText")
+      .getText();
+    console.log("Selected case:", selectedText);
+
+    await firstControl.click();
+    return selectedText;
+  }
+
   // async selectRandomUserOption() {
-  //   await browser.pause(500);
-
-  //   try {
-  //     await $(".fui-MenuList").waitForExist({ timeout: 3000 });
-  //   } catch (e) {
-  //     console.log("No user menu appeared, skipping");
-  //     await browser.keys("Escape");
-  //     return null;
-  //   }
-
   //   const items = await $$('[data-testid^="user-filter-menu-"]');
   //   console.log("User items found:", items.length);
 
-  //   if (items.length === 0) {
-  //     console.log("No users found, skipping");
-  //     await browser.keys("Escape");
-  //     return null;
-  //   }
-
   //   const random = Math.floor(Math.random() * items.length);
-  //   const selectedText = await items[random].getText();
+  //   const selectedText = await browser.execute(
+  //     (el) => el.innerText.trim(),
+  //     items[random],
+  //   );
   //   console.log("Selected user:", selectedText);
 
-  //   await items[random].click();
+  //   await browser.execute((el) => el.click(), items[random]);
 
   //   return selectedText;
   // }
 
-async selectFirstCase() {
-  await $('[data-testid="case-filter-menu"]').waitForDisplayed({ timeout: 5000 });
-  await $('[data-testid="case-filter-menu"]').click();
+  // async selectRandomUserOption() {
+  //   const items = await $$('[data-testid^="user-filter-menu-"]');
+  //   console.log("User items found:", items.length);
 
-  const firstControl = $('[data-testid*="case-control-"]');
-  await firstControl.waitForExist({ timeout: 10000 });
-  await firstControl.waitForDisplayed({ timeout: 5000 });
-  await firstControl.click();
-}
+  //   const random = Math.floor(Math.random() * items.length);
+  //   const selectedText = await items[random]
+  //     .$(".fui-Persona__primaryText")
+  //     .getText();
+  //   console.log("Selected user:", selectedText);
 
-// async selectFirstCase() {
-//   const firstControl = $('[data-testid*="case-control-"]');
-//   await firstControl.waitForExist({ timeout: 10000 });
-//   await firstControl.waitForDisplayed({ timeout: 5000 });
+  //   await browser.execute((el) => el.click(), items[random]);
 
-//   const itemText = await firstControl.getText();
-//   await firstControl.click();
-//   return itemText;
-// }
+  //   return selectedText;
+  // }
 
   async selectRandomUserOption() {
-    const items = await $$('[data-testid^="user-filter-menu-"]');
-    console.log("User items found:", items.length);
+    await $('[data-testid="user-filter-menu"]').waitForDisplayed({
+      timeout: 5000,
+    });
+    await $('[data-testid="user-filter-menu"]').click();
 
-    const random = Math.floor(Math.random() * items.length);
-    const selectedText = await browser.execute(
-      (el) => el.innerText.trim(),
-      items[random],
-    );
+    const firstUser = $('[data-testid^="user-filter-menu-"]');
+    await firstUser.waitForExist({ timeout: 10000 });
+    await firstUser.waitForDisplayed({ timeout: 5000 });
+
+    const selectedText = await firstUser
+      .$(".fui-Persona__primaryText")
+      .getText();
     console.log("Selected user:", selectedText);
 
-    await browser.execute((el) => el.click(), items[random]);
-
+    await firstUser.click();
     return selectedText;
   }
+
   async selectRandomOption() {
     await browser.pause(500);
 
@@ -163,6 +179,30 @@ async selectFirstCase() {
 
     return selectedText;
   }
+
+  // async selectRandomOption() {
+  //   await browser.pause(500);
+
+  //   const menu = await $('[role="menu"]');
+  //   await menu.waitForExist({ timeout: 5000 });
+
+  //   const options = await menu.$$('[role="menuitemradio"]');
+  //   console.log("Options found:", options.length);
+
+  //   if (options.length === 0) {
+  //     console.log("No options available, skipping");
+  //     return null;
+  //   }
+
+  //   const random = Math.floor(Math.random() * options.length);
+  //   const selectedText = await options[random]
+  //     .$(".fui-MenuItem__content")
+  //     .getText();
+  //   console.log("Selected option:", selectedText);
+  //   await browser.execute((el) => el.click(), options[random]);
+
+  //   return selectedText;
+  // }
 
   async selectRandomDropdownOption() {
     await browser.pause(500);
@@ -189,40 +229,37 @@ async selectFirstCase() {
     return selectedText;
   }
 
-//   async selectRandomMilestone() {
-//   await this.milestone.click()
-//   const selector = '[data-testid*="milestone-dropdown-menu-"]'
+  //   async selectRandomMilestone() {
+  //   await this.milestone.click()
+  //   const selector = '[data-testid*="milestone-dropdown-menu-"]'
 
-//   await $(selector).waitForExist({ timeout: 30000 });
-//   await $(selector).waitForDisplayed({ timeout: 10000 });
-//   await $(selector).waitForStable({ timeout: 5000 });
+  //   await $(selector).waitForExist({ timeout: 30000 });
+  //   await $(selector).waitForDisplayed({ timeout: 10000 });
+  //   await $(selector).waitForStable({ timeout: 5000 });
 
-//   const items = await $$(selector);
-//   const randomIndex = Math.floor(Math.random() * items.length);
-//   const selectedItem = items[randomIndex];
+  //   const items = await $$(selector);
+  //   const randomIndex = Math.floor(Math.random() * items.length);
+  //   const selectedItem = items[randomIndex];
 
-//   await selectedItem.waitForDisplayed({ timeout: 5000 });
-//   await selectedItem.waitForStable({ timeout: 5000 });
+  //   await selectedItem.waitForDisplayed({ timeout: 5000 });
+  //   await selectedItem.waitForStable({ timeout: 5000 });
 
-//   const itemText = await selectedItem.$(".fui-MenuItem__content").getText();
-//   await selectedItem.click();
-//   return itemText;
-// }
+  //   const itemText = await selectedItem.$(".fui-MenuItem__content").getText();
+  //   await selectedItem.click();
+  //   return itemText;
+  // }
 
-async selectFirstMilestone() {
-  
-  const selector = '[data-testid*="milestone-dropdown-menu-"]';
+  async selectFirstMilestone() {
+    const selector = '[data-testid*="milestone-dropdown-menu-"]';
 
-  await $(selector).waitForExist({ timeout: 30000 });
-  await $(selector).waitForDisplayed({ timeout: 10000 });
+    await $(selector).waitForExist({ timeout: 30000 });
+    await $(selector).waitForDisplayed({ timeout: 10000 });
 
-  const firstItem = $$(selector)[0];
-  await firstItem.waitForDisplayed({ timeout: 5000 });
-  await firstItem.waitForStable({ timeout: 5000 });
-  await firstItem.click();
-}
-
-
+    const firstItem = $$(selector)[0];
+    await firstItem.waitForDisplayed({ timeout: 5000 });
+    await firstItem.waitForStable({ timeout: 5000 });
+    await firstItem.click();
+  }
 }
 
 export default new AddTask();

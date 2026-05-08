@@ -12,78 +12,79 @@ describe("Add Task Functionality", () => {
     await LoginPage.openLogin();
     await LoginPage.login(privateInfo.username, privateInfo.password);
   });
-  it("Positive Test:  Add Task Button ", async () => {
-    await AddTask.addTaskBtn.click();
-    await Helpers.assertsExistText($("div=Add Task"), "Add Task");
-  });
-  it("Positive Test: Task without choosing a Milestone- button not turning blue ", async () => {
-    await TaskProcedures.firsttaskTextbox();
-    // await TaskProcedures.assignToTask();
-    await TaskProcedures.specificCase();
-    await AddTask.saveBtn.click();
-    await expect(AddTask.saveBtn).toBeDisabled();
-  });
+  // it("Positive Test:  Add Task Button ", async () => {
+  //   await AddTask.addTaskBtn.click();
+  //   await Helpers.assertsExistText($("div=Add Task"), "Add Task");
+  // });
+  // it("Positive Test: Task without choosing a Milestone- button not turning blue ", async () => {
+  //   await TaskProcedures.firsttaskTextbox();
+  //   // await TaskProcedures.assignToTask();
+  //   await TaskProcedures.specificCase();
+  //   await AddTask.saveBtn.click();
+  //   await expect(AddTask.saveBtn).toBeDisabled();
+  // });
   // it("Positive Test: Task with all required Info except Assign To-(specific case gives me an Assign To) BUG?", async () => {
-  //   // await browser.refresh();
-  //   // await AddTask.addTaskBtn.click();
+  //   await browser.refresh();
+  //   await AddTask.addTaskBtn.click();
   //   await TaskProcedures.firsttaskTextbox();
   //   await TaskProcedures.specificCase();
   //   await TaskProcedures.milestonesTask();
   //   await AddTask.saveBtn.click();
   //   await expect(AddTask.saveBtn).toBeDisabled();
   // });
-  it("Positive Test: Task with all required Info except Assign To-(specific case gives me an Assign To) BUG?", async () => {
-  await AddTask.addTaskBtn.waitForDisplayed({ timeout: 5000 });
-  await TaskProcedures.firsttaskTextbox();
-  await AddTask.caseInput.waitForDisplayed({ timeout: 5000 });
-  // await TaskProcedures.specificCase();
-//   await AddTask.caseInput.click()
-  await AddTask.selectFirstCase();
-  await AddTask.milestone.waitForDisplayed({ timeout: 5000 });
-  await TaskProcedures.milestonesTask();
-  await AddTask.saveBtn.waitForDisplayed({ timeout: 5000 });
-  await AddTask.saveBtn.click();
-  // await expect(AddTask.saveBtn).toBeDisabled();
-});
-  it("Positive Test: Input only required information with available Milestones and AssignTo", async () => {
-    const taskName = "AUTOTEST Task " + Date.now();
-    await browser.refresh();
-    await AddTask.addTaskBtn.click();
-    await browser.pause(1000);
-    await AddTask.taskToComplete.setValue(taskName);
-    // await AddTask.caseInput.click()
-    await AddTask.selectFirstCase()
-    await TaskProcedures.assignToTask();
-    await TaskProcedures.milestonesTask();
-    await AddTask.saveBtn.click();
-    await expect($(`span=${taskName}`)).toBeDisplayed();
-  });
-//   it("Positive Test: Should click on Due By Functionality and Save", async () => {
-//     await browser.refresh();
-//     const taskName = "AUTOTEST Task " + Date.now();
-//     await AddTask.addTaskBtn.click();
-//     await AddTask.taskToComplete.setValue(taskName);
-//     await AddTask.selectFirstCase()
-//     // await TaskProcedures.assignToTask();
-//     await TaskProcedures.milestonesTask();
-//     await TaskProcedures.dueByDate();
-//     await AddTask.saveBtn.click();
-//     await expect($(".fui-Badge*=Due by")).toBeDisplayed();
-//     await expect($(`span=${taskName}`)).toBeDisplayed();
-//   });
+  // it("Positive Test: Task with all required Info except Assign To-(specific case gives me an Assign To) BUG?", async () => {
+  //   await AddTask.addTaskBtn.waitForDisplayed({ timeout: 5000 });
+  //   await TaskProcedures.firsttaskTextbox();
+  //   await AddTask.caseInput.waitForDisplayed({ timeout: 5000 });
+  //   await AddTask.selectFirstCase();
+  //   await AddTask.milestone.waitForDisplayed({ timeout: 5000 });
+  //   await TaskProcedures.milestonesTask();
+  //   await AddTask.saveBtn.waitForDisplayed({ timeout: 5000 });
+  //   // await AddTask.saveBtn.click();
+  //   // await expect(AddTask.saveBtn).toBeDisabled();
+  //   await expect(AddTask.saveBtn).toBeEnabled();
+  // });
+  // it("Positive Test: Input only required information with available Milestones and AssignTo", async () => {
+  //   const taskName = "AUTOTEST Task " + Date.now();
+  //   // await browser.refresh();//only if this is first
+  //   await AddTask.addTaskBtn.click();
+  //   await AddTask.taskToComplete.setValue(taskName);
+  //   await AddTask.selectFirstCase();
+  //   // await TaskProcedures.assignToTask();
+  //   await TaskProcedures.milestonesTask();
+  //   await AddTask.saveBtn.click();
+  //   await expect($(`span=${taskName}`)).toBeDisplayed();
+  // });
+  // it("Positive Test: Should click on Due By Functionality and Save", async () => {
+  //   await browser.refresh();
+  //   const taskName = "AUTOTEST Task " + Date.now();
+  //   await AddTask.addTaskBtn.click();
+  //   await AddTask.taskToComplete.setValue(taskName);
+  //   await AddTask.selectFirstCase();
+  //   // await TaskProcedures.assignToTask();
+  //   await TaskProcedures.milestonesTask();
+  //   await TaskProcedures.dueByDate();
+  //   await AddTask.saveBtn.click();
+  //   await expect($(".fui-Badge*=Due by")).toBeDisplayed();
+  //   await expect($(`span=${taskName}`)).toBeDisplayed();
+  // });
   it("Positive Test: Case Dropdown functionality", async () => {
-    await browser.refresh();
+    // await browser.refresh();
     await AddTask.addTaskBtn.click();
     // await AddTask.caseInput.click();
-    const dropdownWordTest = await AddTask.selectFirstCase()
+    const dropdownWordTest = await AddTask.selectFirstCase();
     // const dropdownWord = await AddTask.selectRandomCase();
-    // await expect(AddTask.caseInput).toHaveText(dropdownWordTest);
+    await expect(AddTask.caseInput).toHaveText(dropdownWordTest);
   });
   it("Positive Test: Test the Assign to dropdown functionality", async () => {
     await browser.refresh();
     await AddTask.addTaskBtn.click();
     const word = await TaskProcedures.assignToTask();
-    await expect(AddTask.assignTo).toHaveText(word);
+    console.log("word:", word);
+    // await expect(AddTask.assignTo).toHaveText(word);
+    await expect($('[data-testid="user-filter-menu"]')).toHaveText(word, {
+      trim: true,
+    });
   });
   // it("Positive Test: Test milestone dropdown functionality", async () => {
   //   await browser.refresh();

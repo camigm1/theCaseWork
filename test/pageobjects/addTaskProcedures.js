@@ -10,7 +10,7 @@ class TaskProcedures extends Page {
 
   async assignToTask() {
     await AddTask.assignTo.click();
-    await AddTask.selectRandomUserOption();
+    await AddTask.selectRandomOptionTest();
   }
 
   async milestonesTask() {
@@ -18,23 +18,25 @@ class TaskProcedures extends Page {
     await AddTask.selectFirstMilestone();
   }
 
-//   async milestonesTask() {
-//   // await browser.execute((el) => el.click(), await AddTask.milestone);
-//   await AddTask.milestone.click();
-//   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
-//   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
-  
-//   await AddTask.selectRandomMilestone();
-// }
+  //   async milestonesTask() {
+  //   // await browser.execute((el) => el.click(), await AddTask.milestone);
+  //   await AddTask.milestone.click();
+  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
+  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
+
+  //   await AddTask.selectRandomMilestone();
+  // }
 
   //Testing Case
   async specificCase() {
-  await AddTask.caseInput.click();
+    await AddTask.caseInput.click();
 
-  const caseOption = $('[data-testid="case-filter-menu-4ee4d161-1c99-4a1e-8730-59e8d951de1f-option"]');
-  await caseOption.waitForDisplayed({ timeout: 5000 });
-  await caseOption.click();
-}
+    const caseOption = $(
+      '[data-testid="case-filter-menu-4ee4d161-1c99-4a1e-8730-59e8d951de1f-option"]',
+    );
+    await caseOption.waitForDisplayed({ timeout: 5000 });
+    await caseOption.click();
+  }
 
   async eeveeCase() {
     await AddTask.caseInput.click();
