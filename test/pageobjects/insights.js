@@ -1,9 +1,9 @@
 import { $ } from "@wdio/globals";
-import Page from "./page.js";
+import Index from "./index.js";
 import Menu from "./task.js";
 import Helpers from "./helpers.js";
 
-class Insights extends Page {
+class Insights extends Index {
   //Main Selectors
 
   get insights() {
@@ -23,7 +23,6 @@ class Insights extends Page {
     );
   }
 
- 
   get totalCases() {
     return $(
       '[class="fui-Text ___g0or4u0 fk6fouc fkhj508 f1i3iumi fl43uef fpgzoln f1w7gpdv f6juhto f1gl81tg f2jf649"]',
@@ -40,65 +39,54 @@ class Insights extends Page {
     return $('[data-testid="vert-nav-cases"]');
   }
 
-  get closeBtn(){
-   return $("button=Close")
+  get closeBtn() {
+    return $("button=Close");
   }
-
 
   //Secondary Selectors
-  get rowsCountDashboard(){
-    return $$('.fui-DataGridBody [role="row"]')
+  get rowsCountDashboard() {
+    return $$('.fui-DataGridBody [role="row"]');
   }
 
-  get openCasesTile(){
-    return $(".fui-LargeTitle")
+  get openCasesTile() {
+    return $(".fui-LargeTitle");
   }
 
-  get caseTypeDropdownText(){
-    return $('//label[text()="Case Type"]')
+  get caseTypeDropdownText() {
+    return $('//label[text()="Case Type"]');
   }
 
-  get casesPageRowCount(){
-    return $$('.fui-DataGridBody [role="row"]')
+  get casesPageRowCount() {
+    return $$('.fui-DataGridBody [role="row"]');
   }
 
-  get totalText(){
-    return $('//span[contains(text(), "Total:")]')
+  get totalText() {
+    return $('//span[contains(text(), "Total:")]');
   }
 
-  get pieChartUnknown(){
-    return $(
-      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-3",
-    )
+  get pieChartUnknown() {
+    return $(".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-3");
   }
 
-  get pieChartRows(){
+  get pieChartRows() {
     return $$('[role="rowgroup"].fui-DataGridBody [role="row"]');
   }
 
-  get selectedCasesText(){
-    return $('//span[text()="Selected Cases"]')
+  get selectedCasesText() {
+    return $('//span[text()="Selected Cases"]');
   }
 
-  get newCasesPieChart(){
-    return $(
-      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-0",
-    )
+  get newCasesPieChart() {
+    return $(".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-0");
   }
 
-  get activeCasesPieChart(){
-    return $(
-      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-1",
-    )
+  get activeCasesPieChart() {
+    return $(".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-1");
   }
 
-  get closedCasesPieChart(){
-    return $(
-      ".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-2",
-    )
+  get closedCasesPieChart() {
+    return $(".MuiPieArc-series-systemStatusSeries.MuiPieArc-data-index-2");
   }
-
-
 
   //Functions
   async selectRandomMenuItem() {
@@ -121,45 +109,44 @@ class Insights extends Page {
     return { selectedItem, itemText };
   }
 
-
   async selectRandomTimePeriod() {
-  // Open the dropdown
-  await $('[data-testid="time-period-filter-menu"]').click();
+    // Open the dropdown
+    await $('[data-testid="time-period-filter-menu"]').click();
 
-  // Wait for options to appear
-  await $('[role="option"]').waitForDisplayed({ timeout: 5000 });
+    // Wait for options to appear
+    await $('[role="option"]').waitForDisplayed({ timeout: 5000 });
 
-  // Grab all options
-  const options = await $$('[role="option"]');
+    // Grab all options
+    const options = await $$('[role="option"]');
 
-  if (options.length === 0) throw new Error('No dropdown options found');
+    if (options.length === 0) throw new Error("No dropdown options found");
 
-  // Pick a random option
-  const randomIndex = Math.floor(Math.random() * options.length);
-  const randomOption = options[randomIndex];
+    // Pick a random option
+    const randomIndex = Math.floor(Math.random() * options.length);
+    const randomOption = options[randomIndex];
 
-  const selectedText = await randomOption.getText();
-  await randomOption.click();
+    const selectedText = await randomOption.getText();
+    await randomOption.click();
 
-  return selectedText.trim();
-}
+    return selectedText.trim();
+  }
 
-// async selectFirstTimePeriod() {
-//   await $('[data-testid="time-period-filter-menu"]').waitForDisplayed({ timeout: 5000 });
-//   await $('[data-testid="time-period-filter-menu"]').click();
+  // async selectFirstTimePeriod() {
+  //   await $('[data-testid="time-period-filter-menu"]').waitForDisplayed({ timeout: 5000 });
+  //   await $('[data-testid="time-period-filter-menu"]').click();
 
-//   const firstOption = $('[data-testid^="time-period-filter-menu-"][data-testid$="-option"]');
-//   await firstOption.waitForExist({ timeout: 10000 });
-//   await firstOption.waitForDisplayed({ timeout: 5000 });
-//   await firstOption.click();
-// }
+  //   const firstOption = $('[data-testid^="time-period-filter-menu-"][data-testid$="-option"]');
+  //   await firstOption.waitForExist({ timeout: 10000 });
+  //   await firstOption.waitForDisplayed({ timeout: 5000 });
+  //   await firstOption.click();
+  // }
 
-async selectFirstTimePeriod() {
-  const firstOption = $('[data-testid^="time-period-filter-menu-"]');
-  await firstOption.waitForExist({ timeout: 10000 });
-  await firstOption.waitForDisplayed({ timeout: 5000 });
-  await firstOption.click();
-}
+  async selectFirstTimePeriod() {
+    const firstOption = $('[data-testid^="time-period-filter-menu-"]');
+    await firstOption.waitForExist({ timeout: 10000 });
+    await firstOption.waitForDisplayed({ timeout: 5000 });
+    await firstOption.click();
+  }
 }
 
 export default new Insights();

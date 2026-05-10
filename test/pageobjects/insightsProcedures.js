@@ -1,20 +1,15 @@
 import { $ } from "@wdio/globals";
-import Insights from "../pageobjects/insights.js"
+import Insights from "../pageobjects/insights.js";
 import Helpers from "./helpers.js";
-import Page from "../pageobjects/page.js"
+import Index from "./index.js";
 
-class InsightsteProcedures extends Page {
-
-async filtersCheckbox(){
+class InsightsteProcedures extends Index {
+  async filtersCheckbox() {
     await Insights.insights.click();
     await Insights.filtersCheckbox.click();
-}
+  }
 
-async casesCount(){
-    
-}
-
-
+  async casesCount() {}
 }
 
 export default new InsightsteProcedures();

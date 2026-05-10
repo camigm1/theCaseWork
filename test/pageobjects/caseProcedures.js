@@ -1,10 +1,10 @@
 import { $ } from "@wdio/globals";
 import Case from "../pageobjects/case.js";
-import Page from "./page.js";
+import Index from "./index.js";
 import Menu from "./task.js";
 import Helpers from "./helpers.js";
 
-class CaseProcedures extends Page {
+class CaseProcedures extends Index {
   get caseName() {
     return "This is a Case Name";
   }

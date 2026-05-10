@@ -1,7 +1,7 @@
 import { $ } from "@wdio/globals";
-import Page from "./page.js";
+import Index from "./index.js";
 
-class Template extends Page {
+class Template extends Index {
   get dinamicName() {
     return "Template was made today";
   }
@@ -45,10 +45,15 @@ class Template extends Page {
   get templateDescription() {
     return $('[data-testid="edit-case-template-description-input"]');
   }
+
   get templateFieldName() {
     return $(
       '[data-testid="edit-case-template-short-description-field-name-input"]',
     );
+  }
+
+  get overviewText() {
+    return $('[data-testid="edit-case-template-overview-input"]');
   }
 
   get templateDefaultText() {

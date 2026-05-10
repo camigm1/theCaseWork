@@ -1,5 +1,5 @@
 import { $ } from "@wdio/globals";
-import Page from "./page.js";
+import Page from "./index.js";
 import Menu from "./task.js";
 import Cart from "./case.js";
 

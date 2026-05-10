@@ -1,11 +1,11 @@
 import { $ } from "@wdio/globals";
 import AddTask from "./task.js";
 import Case from "./case.js";
-import Page from "./page.js";
+import Index from "./index.js";
 import Menu from "./task.js";
 import Helpers from "./helpers.js";
 
-class TaskProcedures extends Page {
+class TaskProcedures extends Index {
   async caseName() {}
 
   async assignToTask() {
@@ -14,14 +14,11 @@ class TaskProcedures extends Page {
   }
 
   async milestonesTask() {
-    await browser.waitUntil(
-         async () => await AddTask.milestone.isDisplayed(),
-         {
-           timeout: 30000,
-           timeoutMsg: "Milestone dropdown failed to display after 30s",
-           interval: 500,
-         }
-       );
+    await browser.waitUntil(async () => await AddTask.milestone.isDisplayed(), {
+      timeout: 30000,
+      timeoutMsg: "Milestone dropdown failed to display after 30s",
+      interval: 500,
+    });
     await AddTask.milestone.click();
     await AddTask.selectFirstMilestone();
   }
@@ -34,21 +31,21 @@ class TaskProcedures extends Page {
 
   //   await AddTask.selectRandomMilestone();
   // }
-  async makeNote(){
+  async makeNote() {
     await AddTask.discussionTab.click();
-    await AddTask.caseNoteInput.setValue('Leaving a note')
+    await AddTask.caseNoteInput.setValue("Leaving a note");
     await AddTask.saveNote.click();
     await AddTask.detailsTab.click();
   }
 
-//   async milestonesTask() {
-//   // await browser.execute((el) => el.click(), await AddTask.milestone);
-//   await AddTask.milestone.click();
-//   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
-//   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
-  
-//   await AddTask.selectRandomMilestone();
-// }
+  //   async milestonesTask() {
+  //   // await browser.execute((el) => el.click(), await AddTask.milestone);
+  //   await AddTask.milestone.click();
+  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
+  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
+
+  //   await AddTask.selectRandomMilestone();
+  // }
 
   //Testing Case
   async specificCase() {

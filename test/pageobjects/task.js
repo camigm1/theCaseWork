@@ -1,13 +1,13 @@
 import { $ } from "@wdio/globals";
-import Page from "./page.js";
+import Index from "./index.js";
 
-class AddTask extends Page {
+class AddTask extends Index {
   get addTaskBtn() {
     return $('[data-testid="link-button-Add Task"]');
   }
 
-  get title(){
-    return $('[data-testid="editable-label-title"]')
+  get title() {
+    return $('[data-testid="editable-label-title"]');
   }
 
   get caseInput() {
@@ -39,7 +39,6 @@ class AddTask extends Page {
     return $('[data-testid="task-dialog-billable-button"]');
   }
 
-  
   get datePicker() {
     return $('[data-testid="task-dialog-datepicker"]');
   }
@@ -53,48 +52,40 @@ class AddTask extends Page {
   }
 
   //New btns
-  get results(){
-    return $('[data-testid="task-dialog-results"]')
+  get results() {
+    return $('[data-testid="task-dialog-results"]');
   }
 
-  get category(){
-    return $('[data-testid="task-dialog-category"]')
+  get category() {
+    return $('[data-testid="task-dialog-category"]');
   }
 
-  get effort(){
-    return $('[data-testid="task-dialog-estimated-hours"]')
+  get effort() {
+    return $('[data-testid="task-dialog-estimated-hours"]');
   }
 
-
-  get discussionTab(){
-    return $('button[role="tab"][value="Discussion"]')
-  }
-  
-  get caseNoteInput(){
-    return $('[data-testid="case-note-input"]')
+  get discussionTab() {
+    return $('button[role="tab"][value="Discussion"]');
   }
 
-get saveNote(){
-  return $('[data-testid="case-note-add-button"]')
-}
-  get detailsTab(){
-    return $('button[role="tab"][value="Details"]')
+  get caseNoteInput() {
+    return $('[data-testid="case-note-input"]');
   }
 
-
-  get confirmationCancelYes(){
-return $('[data-testid="confirmation-dialog-confirm-button"]')
+  get saveNote() {
+    return $('[data-testid="case-note-add-button"]');
+  }
+  get detailsTab() {
+    return $('button[role="tab"][value="Details"]');
   }
 
-
-  get confirmationCancelNo(){
-    return $('[data-testid="confirmation-dialog-cancel-button"]')
+  get confirmationCancelYes() {
+    return $('[data-testid="confirmation-dialog-confirm-button"]');
   }
 
-  
-
-
-
+  get confirmationCancelNo() {
+    return $('[data-testid="confirmation-dialog-cancel-button"]');
+  }
 
   async selectRandomOptionTest() {
     const listbox = await $('[role="listbox"]');

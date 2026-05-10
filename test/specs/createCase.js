@@ -30,13 +30,13 @@
 //     await Case.deleteAssignedUser.click();
 //     await Helpers.assertsExistText(Case.checkAssignedTo, "");
 //   });
-//   it("Positive Test: Fills out everything in the form", async () => {
+//   it("Positive Test: Input all Information", async () => {
 //     await browser.refresh();
 //     //required
 //     await Case.caseName.setValue(CaseProcedures.caseName);
 //     await CaseProcedures.chooseDate();
 //     await Case.retainedBy.click();
-//     await browser.pause(3000)
+//     await browser.pause(3000);
 //     await Case.retainedBy.waitForDisplayed({ timeout: 5000 });
 //     await Case.selectRandomOption();
 //     //unrequired
@@ -77,11 +77,13 @@
 //     await expect(Case.saveCaseBtn).toBeDisabled();
 //   });
 //   it("Positive Test: Checks for Retained By dropdown election-DONE", async () => {
-//       //   await browser.refresh();
+//     //   await browser.refresh();
 //     await Case.retainedBy.click();
-//     const selectedText = await Case.selectRandomOption()
-//     const cleanedText = selectedText.split('\n').pop().trim();
-//     const cardLabel = await $('[data-testid="client-party-dropdown"]').getText();
+//     const selectedText = await Case.selectRandomOption();
+//     const cleanedText = selectedText.split("\n").pop().trim();
+//     const cardLabel = await $(
+//       '[data-testid="client-party-dropdown"]',
+//     ).getText();
 //     expect(cardLabel).toEqual(cleanedText);
 //   });
 //   //  it("Positive Test: Checks for Retained By dropdown CARD-MANUAL?", async () => {
@@ -102,18 +104,18 @@
 //   //   );
 //   //   await expect(remainingParties.length).toBe(0);
 //   // });
-// //   it("Negative Test: Input more than 2000 characters in notes textbox", async () => {
-// //     const over2000chars = "a".repeat(2001);
-// //     await Case.notesTextbox.setValue(over2000chars);
-// //     const actualValue = await Case.notesTextbox.getValue();
-// //     await expect(actualValue.length).toBeLessThanOrEqual(2000);
-// //     });
+//   //   it("Negative Test: Input more than 2000 characters in notes textbox", async () => {
+//   //     const over2000chars = "a".repeat(2001);
+//   //     await Case.notesTextbox.setValue(over2000chars);
+//   //     const actualValue = await Case.notesTextbox.getValue();
+//   //     await expect(actualValue.length).toBeLessThanOrEqual(2000);
+//   //     });
 //   it("Positive Test: Input more than 200 characters in description textbox", async () => {
 //     const over200chars = "a".repeat(201);
 //     await Case.descriptionTextbox.setValue(over200chars);
 //     const actualValue = await Case.descriptionTextbox.getValue();
 //     await expect(actualValue.length).toBeLessThanOrEqual(200);
-//     });
+//   });
 //   // it("Positive Test: Inputs more than 2000 charachters into the Overview textbox", async () => {
 //   //   const over2000chars = "a".repeat(2001);
 //   //   await Case.overviewTextbox.setValue(over2000chars);
@@ -127,11 +129,11 @@
 //     await Case.removeAllUsers();
 //     const assignedToContent = await Case.checkAssignedTo;
 //     const remainingUsers = await assignedToContent.$$(
-//         '[data-testid="person-control-delete-button"]',
-//       );
+//       '[data-testid="person-control-delete-button"]',
+//     );
 //     await expect(remainingUsers.length).toBe(0);
-//     });
-//     it("Positive Test: Test Only Required Fields", async () => {
+//   });
+//   it("Positive Test: Test Only Required Fields", async () => {
 //     await browser.refresh();
 //     const thingy = "This Case Name is a Test";
 //     await Case.caseName.setValue(thingy);

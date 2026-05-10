@@ -1,14 +1,13 @@
 import { $ } from "@wdio/globals";
-import Page from "./page.js";
+import Index from "./index.js";
 import Menu from "./task.js";
 import Helpers from "./helpers.js";
 
-class Case extends Page {
+class Case extends Index {
   //Main Selectors
 
-
-  get casePageBtn(){
-    return $('[data-testid="cases-page-create-case-button"]')
+  get casePageBtn() {
+    return $('[data-testid="cases-page-create-case-button"]');
   }
   get title() {
     return $(".fui-Title2");
@@ -239,27 +238,24 @@ class Case extends Page {
     const selectedText = await options[random].getText();
     await options[random].click();
 
-    return selectedText; 
+    return selectedText;
   }
-
- 
 
   //EVENTS
   async selectDateTest() {
     await this.eventTodayMarker.click();
   }
 
-  
   async deleteFirstEvent() {
-  const eventCard = $(".___asxt7x0");
+    const eventCard = $(".___asxt7x0");
 
-  await eventCard.moveTo();
-  const deleteBtn = $('[data-testid^="case-event-delete-"]');
-  await deleteBtn.waitForDisplayed({ timeout: 5000 });
-  await deleteBtn.click();
-  await this.confirmDelete.waitForDisplayed({ timeout: 5000 });
-  await this.confirmDelete.click();
-}
+    await eventCard.moveTo();
+    const deleteBtn = $('[data-testid^="case-event-delete-"]');
+    await deleteBtn.waitForDisplayed({ timeout: 5000 });
+    await deleteBtn.click();
+    await this.confirmDelete.waitForDisplayed({ timeout: 5000 });
+    await this.confirmDelete.click();
+  }
 }
 
 export default new Case();
