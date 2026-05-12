@@ -40,22 +40,22 @@ describe("Tests Create New Case Functionality", () => {
     await expect(selectedCasesTitle).toBeDisplayed();
     await Insights.closeBtn.click();
   });
-  // it("Positive Test: Confirm Unknown cases pop-up", async () => {
-  //   await browser.refresh();
-  //   await browser.refresh();
-  //   await Insights.pieChartUnknown.waitForExist({ timeout: 90000 });
-  //   await Insights.pieChartUnknown.waitForDisplayed({ timeout: 90000 });
-  //   await browser.refresh();
-  //   await Insights.pieChartUnknown.click();
-  //   await $('[role="rowgroup"].fui-DataGridBody').waitForExist({ timeout: 60000 });
-  //   await $('[role="rowgroup"].fui-DataGridBody').waitForDisplayed({ timeout: 60000 });
-  //   const rows = await Insights.pieChartUnknownRows;
-  //   console.log(rows);
-  //   const selectedCasesTitle = await Insights.selectedCasesText;
-  //   await expect(selectedCasesTitle).toBeDisplayed();
-  //   await Insights.closeBtn.waitForExist({ timeout: 30000 });
-  //   await Insights.closeBtn.click();
-  // });
+  it("Positive Test: Confirm Unknown cases pop-up", async () => {
+    await browser.refresh();
+    await browser.refresh();
+    await Insights.pieChartUnknown.waitForExist({ timeout: 90000 });
+    await Insights.pieChartUnknown.waitForDisplayed({ timeout: 90000 });
+    await browser.refresh();
+    await Insights.pieChartUnknown.click();
+    await $('[role="rowgroup"].fui-DataGridBody').waitForExist({ timeout: 60000 });
+    await $('[role="rowgroup"].fui-DataGridBody').waitForDisplayed({ timeout: 60000 });
+    const rows = await Insights.pieChartUnknownRows;
+    console.log(rows);
+    const selectedCasesTitle = await Insights.selectedCasesText;
+    await expect(selectedCasesTitle).toBeDisplayed();
+    await Insights.closeBtn.waitForExist({ timeout: 30000 });
+    await Insights.closeBtn.click();
+  });
   it("Positive Test: Confirm New cases pop-up", async () => {
     await Insights.newCasesPieChart.waitForExist({ timeout: 90000 });
    await Insights.newCasesPieChart.waitForDisplayed({ timeout: 90000 });
