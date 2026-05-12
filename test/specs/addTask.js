@@ -18,7 +18,6 @@ describe("Add Task Functionality", () => {
   });
   it("Positive Test: Task without choosing a Milestone- button not turning blue ", async () => {
     await TaskProcedures.firsttaskTextbox();
-    // await TaskProcedures.assignToTask();
     await TaskProcedures.specificCase();
     await AddTask.saveBtn.click();
     await expect(AddTask.saveBtn).toBeDisabled();
@@ -58,27 +57,6 @@ describe("Add Task Functionality", () => {
     await expect($(".fui-Badge*=Due by")).toBeDisplayed();
     await expect($(`span=${taskName}`)).toBeDisplayed();
   });
-  // it("Positive Test: Case Dropdown functionality", async () => {
-  //   await browser.refresh();
-  //   await AddTask.addTaskBtn.click();
-  //   // await AddTask.caseInput.click();
-  //   const dropdownWordTest = await AddTask.selectFirstCase()
-  //   // const dropdownWord = await AddTask.selectRandomCase();
-  //   await expect(AddTask.caseInput).toHaveText(dropdownWordTest);
-  // });
-  // it("Positive Test: Test the Assign to dropdown functionality", async () => {
-  //   await browser.refresh();
-  //   await AddTask.addTaskBtn.click();
-  //   const word = await TaskProcedures.assignToTask();
-  //   await expect(AddTask.assignTo).toHaveText(word);
-  // });
-  // it("Positive Test: Test milestone dropdown functionality", async () => {
-  //   await browser.refresh();
-  //   await AddTask.addTaskBtn.click();
-  //   await TaskProcedures.specificCase();
-  //   const miles = await TaskProcedures.milestonesTask();
-  //   await expect(AddTask.milestone).toHaveText(miles);
-  // });
   it("Negative Test: Add More than 500 words to the Description TextBox", async () => {
     await AddTask.addTaskBtn.click();
     const over500chars = "a".repeat(501);
@@ -87,7 +65,6 @@ describe("Add Task Functionality", () => {
     await expect(actualValue.length).toBeLessThanOrEqual(500);
   });
   it("Negative Test: Add More than 800 words to the Results TextBox", async () => {
-    // await AddTask.addTaskBtn.click();
     const over800chars = "a".repeat(801);
     await AddTask.results.setValue(over800chars);
     const actualValue = await AddTask.taskDescription.getValue();

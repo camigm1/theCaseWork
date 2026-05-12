@@ -4,8 +4,7 @@ import Menu from "./task.js";
 import Helpers from "./helpers.js";
 
 class Case extends Index {
-  //Main Selectors
-
+  
   get casePageBtn() {
     return $('[data-testid="cases-page-create-case-button"]');
   }
@@ -106,8 +105,7 @@ class Case extends Index {
   get confirmDelete() {
     return $('[data-testid="confirmation-dialog-confirm-button"]');
   }
-
-  // Affiliated Parties section
+//Affiliated Parties
   get addAffiliated() {
     return $('[data-testid="link-button-Add Affiliated Party"]');
   }
@@ -124,57 +122,10 @@ class Case extends Index {
     return $('[data-testid="party-control-dismiss-button"]');
   }
 
-  // get confirmCardDeletion(){
-  //   return $('[data-testid="confirmation-dialog-confirm-button"]')
-  // }
-
-  //Notes
   get notesTextbox() {
     return $('[data-testid="case-note-input"]');
   }
 
-  //Secondary Selectors
-
-  //////////////// All Items Selectors
-
-  get caseSelectors() {
-    return [
-      {
-        name: "caseName",
-        selector: '[data-testid="case-info-card-name-input"]',
-      },
-      { name: "datePicker", selector: '[id="datePicker-inputrgh"]' },
-      { name: "caseType", selector: '[data-testid="case-type-combobox"]' },
-      { name: "retainedBy", selector: '[data-testid="party-combobox"]' },
-      { name: "caseStatus", selector: '[data-testid="case-status-combobox"]' },
-      {
-        name: "billingToggle",
-        selector: '[data-testid="case-info-card-fixed-fee-switch"]',
-      },
-      {
-        name: "estHours",
-        selector: '[data-testid="case-info-card-estimated-hours-input"]',
-      },
-      {
-        name: "descriptionTextbox",
-        selector: '[data-testid="case-info-card-short-description-input"]',
-      },
-      {
-        name: "overviewTextbox",
-        selector: '[data-testid="case-info-card-overview-input"]',
-      },
-      { name: "assignTo", selector: '[data-testid="link-button-Assign Case"]' },
-      {
-        name: "addAffiliated",
-        selector: '[data-testid="link-button-Add Affiliated Party"]',
-      },
-      { name: "notesTextbox", selector: '[data-testid="case-note-input"]' },
-      {
-        name: "addEvent",
-        selector: '[data-testid="case-events-add-event-btn"]',
-      },
-    ];
-  }
 
   async clickRandomUser() {
     const checkboxes = await $$(".fui-Checkbox__input");
@@ -229,17 +180,13 @@ class Case extends Index {
     const listbox = await $('[role="listbox"]');
     await listbox.waitForExist({ timeout: 5000 });
     const options = await listbox.$$('[role="option"]');
-
-    // if (options.length === 0) {
-    //   throw new Error("No options found in dropdown");
-    // }
-
     const random = Math.floor(Math.random() * options.length);
     const selectedText = await options[random].getText();
     await options[random].click();
 
     return selectedText;
   }
+
 
   //EVENTS
   async selectDateTest() {

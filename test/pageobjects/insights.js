@@ -4,8 +4,7 @@ import Menu from "./task.js";
 import Helpers from "./helpers.js";
 
 class Insights extends Index {
-  //Main Selectors
-
+ 
   get insights() {
     return $('[data-testid="vert-nav-insights"]');
   }
@@ -110,18 +109,10 @@ class Insights extends Index {
   }
 
   async selectRandomTimePeriod() {
-    // Open the dropdown
     await $('[data-testid="time-period-filter-menu"]').click();
-
-    // Wait for options to appear
     await $('[role="option"]').waitForDisplayed({ timeout: 5000 });
-
-    // Grab all options
     const options = await $$('[role="option"]');
-
     if (options.length === 0) throw new Error("No dropdown options found");
-
-    // Pick a random option
     const randomIndex = Math.floor(Math.random() * options.length);
     const randomOption = options[randomIndex];
 
@@ -131,15 +122,7 @@ class Insights extends Index {
     return selectedText.trim();
   }
 
-  // async selectFirstTimePeriod() {
-  //   await $('[data-testid="time-period-filter-menu"]').waitForDisplayed({ timeout: 5000 });
-  //   await $('[data-testid="time-period-filter-menu"]').click();
-
-  //   const firstOption = $('[data-testid^="time-period-filter-menu-"][data-testid$="-option"]');
-  //   await firstOption.waitForExist({ timeout: 10000 });
-  //   await firstOption.waitForDisplayed({ timeout: 5000 });
-  //   await firstOption.click();
-  // }
+ 
 
   async selectFirstTimePeriod() {
     const firstOption = $('[data-testid^="time-period-filter-menu-"]');

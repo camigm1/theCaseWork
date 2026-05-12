@@ -30,11 +30,7 @@ class TemplateProcedures extends Index {
     await Template.eventRemove.click();
   }
 
-  async engagementTemplate() {
-    await Template.engagement.click();
-    //create a function to search for random choice in dropdown
-    //assert that it matches what you chose
-  }
+  
 }
 
 export default new TemplateProcedures();

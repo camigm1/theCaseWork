@@ -113,17 +113,6 @@ class AddTask extends Index {
     return name;
   }
 
-  // async selectFirstCase() {
-  //   await $('[data-testid="case-filter-menu"]').waitForDisplayed({
-  //     timeout: 5000,
-  //   });
-  //   await $('[data-testid="case-filter-menu"]').click();
-
-  //   const firstControl = $('[data-testid*="case-control-"]');
-  //   await firstControl.waitForExist({ timeout: 10000 });
-  //   await firstControl.waitForDisplayed({ timeout: 5000 });
-  //   await firstControl.click();
-  // }
 
   async selectFirstCase() {
     await $('[data-testid="case-filter-menu"]').waitForDisplayed({
@@ -144,36 +133,7 @@ class AddTask extends Index {
     return selectedText;
   }
 
-  // async selectRandomUserOption() {
-  //   const items = await $$('[data-testid^="user-filter-menu-"]');
-  //   console.log("User items found:", items.length);
-
-  //   const random = Math.floor(Math.random() * items.length);
-  //   const selectedText = await browser.execute(
-  //     (el) => el.innerText.trim(),
-  //     items[random],
-  //   );
-  //   console.log("Selected user:", selectedText);
-
-  //   await browser.execute((el) => el.click(), items[random]);
-
-  //   return selectedText;
-  // }
-
-  // async selectRandomUserOption() {
-  //   const items = await $$('[data-testid^="user-filter-menu-"]');
-  //   console.log("User items found:", items.length);
-
-  //   const random = Math.floor(Math.random() * items.length);
-  //   const selectedText = await items[random]
-  //     .$(".fui-Persona__primaryText")
-  //     .getText();
-  //   console.log("Selected user:", selectedText);
-
-  //   await browser.execute((el) => el.click(), items[random]);
-
-  //   return selectedText;
-  // }
+  
 
   async selectRandomUserOption() {
     await $('[data-testid="user-filter-menu"]').waitForDisplayed({
@@ -216,29 +176,6 @@ class AddTask extends Index {
     return selectedText;
   }
 
-  // async selectRandomOption() {
-  //   await browser.pause(500);
-
-  //   const menu = await $('[role="menu"]');
-  //   await menu.waitForExist({ timeout: 5000 });
-
-  //   const options = await menu.$$('[role="menuitemradio"]');
-  //   console.log("Options found:", options.length);
-
-  //   if (options.length === 0) {
-  //     console.log("No options available, skipping");
-  //     return null;
-  //   }
-
-  //   const random = Math.floor(Math.random() * options.length);
-  //   const selectedText = await options[random]
-  //     .$(".fui-MenuItem__content")
-  //     .getText();
-  //   console.log("Selected option:", selectedText);
-  //   await browser.execute((el) => el.click(), options[random]);
-
-  //   return selectedText;
-  // }
 
   async selectRandomDropdownOption() {
     await browser.pause(500);

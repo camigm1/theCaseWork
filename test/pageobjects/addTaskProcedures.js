@@ -23,14 +23,7 @@ class TaskProcedures extends Index {
     await AddTask.selectFirstMilestone();
   }
 
-  //   async milestonesTask() {
-  //   // await browser.execute((el) => el.click(), await AddTask.milestone);
-  //   await AddTask.milestone.click();
-  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
-  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
-
-  //   await AddTask.selectRandomMilestone();
-  // }
+  
   async makeNote() {
     await AddTask.discussionTab.click();
     await AddTask.caseNoteInput.setValue("Leaving a note");
@@ -38,14 +31,7 @@ class TaskProcedures extends Index {
     await AddTask.detailsTab.click();
   }
 
-  //   async milestonesTask() {
-  //   // await browser.execute((el) => el.click(), await AddTask.milestone);
-  //   await AddTask.milestone.click();
-  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForExist({ timeout: 10000 });
-  //   await $('[data-testid^="milestone-dropdown-menu-"][data-testid$="-option"]').waitForStable({ timeout: 5000 });
-
-  //   await AddTask.selectRandomMilestone();
-  // }
+  
 
   //Testing Case
   async specificCase() {
